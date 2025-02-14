@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +22,7 @@
 
         html,
         body {
-            font-family:  "Manrope", sans-serif;       
+            font-family: "Manrope", sans-serif;
             height: 100%;
             color: #333;
             background-color: #fffdfc;
@@ -34,15 +33,15 @@
             flex-direction: column;
             padding: 40px 20px;
             justify-content: flex-start;
-        }   
+        }
 
         p {
-            font-size: 1.1vw;
+            font-size: 1.1rem;
             line-height: 1.6;
             margin: 20px 0;
         }
 
-
+        /* Header */
         .header {
             text-align: left;
             width: 50%;
@@ -50,32 +49,32 @@
         }
 
         .header h3 {
-            font-size: 2vw;
+            font-size: 2rem;
             margin-bottom: -20px;
         }
 
         .header p {
-            font-size: 1.2vw;
+            font-size: 1.2rem;
             color: #777;
-        }           
+        }
 
+        /* Content */
         .content {
             margin-bottom: 50px;
         }
 
         .content p {
-            font-size: 1.1vw;
+            font-size: 1.1rem;
             color: #555;
             text-align: left;
             width: 50%;
             margin: 0 auto 10px auto;
             font-family: "EB Garamond", serif;
-            
         }
 
         .content a {
-            color: #333;
-            text-decoration: underline;
+            color: #1a8e18;
+            font-weight: normal;
         }
 
         .content ul {
@@ -83,24 +82,107 @@
             list-style-position: outside;
             padding: 1px;
             margin-left: 30px;
-
         }
 
         .content ul li {
-            font-size: 1.1vw;
+            font-size: 1.1rem;
             color: #555;
             width: 50%;
             margin: 0 auto 5px auto;
             font-family: "EB Garamond", serif;
         }
 
-        .content a {
-            /* color: #d79549; */
-            /* color: #49a5d7; */
-            color: #1a8e18;
-            font-weight: normal;
+        /* Media Queries for Responsiveness */
+
+        /* For small screens (mobile phones) */
+        @media (max-width: 768px) {
+            .header {
+                width: 100%;
+                text-align: left;
+                margin: 10% auto;
+            }
+
+            .header h3 {
+                font-size: 1rem; /* Smaller font size for phones */
+            }
+
+            .header p {
+                font-size: 1rem; /* Smaller font size for phones */
+            }
+
+            /* Reducing font size for all text on phones */
+            p,
+            .content p,
+            .content ul li,
+            .content a {
+                font-size: 0.9rem; /* Reduce font size for mobile */
+            }
+
+            .content p,
+            .content ul li {
+                width: 90%; /* Adjust width for smaller screens */
+                margin: 0 auto;
+            }
+
+            .content ul {
+                margin-left: 20px; /* Adjust list indentation */
+            }
+
+            .content a {
+                font-size: 0.95rem; /* Slightly smaller links */
+            }
         }
 
+        /* For very small screens (e.g., small mobile phones) */
+        @media (max-width: 480px) {
+            .header h3 {
+                font-size: 0.7rem; /* Even smaller font size for small phones */
+            }
+
+            .header p {
+                font-size: 0.9rem;
+            }
+
+            /* Reducing font size even further for very small screens */
+            p,
+            .content p,
+            .content ul li,
+            .content a {
+                font-size: 0.85rem; /* Even smaller font size for tiny phones */
+            }
+
+            .content p,
+            .content ul li {
+                font-size: 0.85rem; /* Even smaller font size for tiny phones */
+                width: 100%; /* Full width on very small screens */
+            }
+
+            .content a {
+                font-size: 0.9rem; /* Slightly smaller links on very small screens */
+            }
+        }
+
+        /* For medium screens (tablets) */
+        @media (max-width: 1024px) {
+            .header {
+                width: 90%;
+                text-align: left;
+            }
+
+            .header h3 {
+                font-size: 1.3rem;
+            }
+
+            .content p,
+            .content ul li {
+                width: 90%; /* Adjust width for tablets */
+                font-size: 1rem;
+            }
+
+            .content a {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 
@@ -113,11 +195,11 @@
     <div class="content">
         <p>I love computers, languages, neuroscience and music. A few things I've enjoyed building:
         <ul>
-            <li> self-correcting language models for information retrieval at <a href="https://www.deshawresearch.com/">DE Shaw</a> 
+            <li> self-correcting language models for information retrieval at <a href="https://www.deshawresearch.com/">DE Shaw</a> </li>
             <li> transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute of MIT and Harvard</a> (<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1">paper</a>) </li>
             <li> GNNs for pharmacokinetics prediction at <a href="https://www.deshawresearch.com/">DE Shaw Research</a> </li>
             <li> high-throughput computer vision pipelines at <a href="https://research.google/">Google Research</a> </li>
-            <li><a href="assets/Ghostwriter_Paper.pdf" target="_blank">lyric generators</a> for soundtracks (CS224N Best Project)
+            <li><a href="assets/Ghostwriter_Paper.pdf" target="_blank">lyric generators</a> for soundtracks (CS224N Best Project)</li>
             <li> self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> (<a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1">paper</a>)</li>
             <li> <a href="https://github.com/nivedithasi/CRUMPL">image "uncrumplers"</a> (CS231N Best Project) </li>
             <li> models of dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
@@ -125,9 +207,8 @@
         </ul>
 
         <p><br>I study CS at Stanford and conduct <b>research on compute-efficient AI models</b>. I also really enjoy teaching (Intro Programming, Operating Systems, Databases, Progamming FPGAs, Machine Learning) and occasionally post <a href="https://www.youtube.com/@nivedithasiyer">YouTube</a> videos about cool concepts.</p>
-        <p><br><br>nivsiyer@cs.stanford.edu</p>
+        <p><br><br>nivsiyer@cs.stanford.edu<br>                 </p>
     </div>
-
 </body>
 
 </html>
