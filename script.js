@@ -1,6 +1,7 @@
 // Cricket match simulation
 class CricketMatch {
     constructor() {
+        console.log('Initializing cricket match...');
         this.runs = 0;
         this.wickets = 0;
         this.overs = 0;
@@ -9,6 +10,14 @@ class CricketMatch {
         this.commentaryFeed = document.getElementById('commentary-feed');
         this.scoreDisplay = document.getElementById('current-score');
         this.oversDisplay = document.getElementById('overs');
+        
+        if (!this.commentaryFeed || !this.scoreDisplay || !this.oversDisplay) {
+            console.error('Required DOM elements not found!');
+            return;
+        }
+
+        // Clear initial loading message
+        this.commentaryFeed.innerHTML = '';
         
         // Team definitions
         this.indiaTeam = [
@@ -52,11 +61,13 @@ class CricketMatch {
         this.currentBowler = this.australiaTeam[10]; // Starting with Sean Abbott
         this.nextBatsmanIndex = 2;
         
+        console.log('Starting match...');
         // Start the match immediately
         this.initializeMatch();
     }
 
     initializeMatch() {
+        console.log('Initializing match...');
         this.addCommentary("Welcome to the match! India vs Australia is about to begin!");
         this.addCommentary(`${this.currentBatsman} and ${this.nonStriker} are at the crease. ${this.currentBowler} to bowl.`);
         this.simulateBall();
@@ -68,6 +79,7 @@ class CricketMatch {
     }
 
     addCommentary(text, type = '') {
+        console.log('Adding commentary:', text);
         const commentaryItem = document.createElement('div');
         commentaryItem.className = `commentary-item ${type}`;
         commentaryItem.textContent = text;
@@ -118,6 +130,7 @@ class CricketMatch {
     }
 
     simulateBall() {
+        console.log('Simulating ball...');
         // Simulate ball outcome
         const random = Math.random();
         let runs = 0;
@@ -162,4 +175,5 @@ class CricketMatch {
 }
 
 // Start the match immediately when the script loads
+console.log('Script loaded, creating match instance...');
 const match = new CricketMatch(); 
