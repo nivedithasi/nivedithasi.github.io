@@ -5,12 +5,10 @@ class CricketMatch {
         this.wickets = 0;
         this.overs = 0;
         this.balls = 0;
-        this.isRunning = false;
+        this.isRunning = true;
         this.commentaryFeed = document.getElementById('commentary-feed');
         this.scoreDisplay = document.getElementById('current-score');
         this.oversDisplay = document.getElementById('overs');
-        this.startButton = document.getElementById('start-match');
-        this.pauseButton = document.getElementById('pause-match');
         
         // Team definitions
         this.indiaTeam = [
@@ -54,29 +52,10 @@ class CricketMatch {
         this.currentBowler = this.australiaTeam[10]; // Starting with Sean Abbott
         this.nextBatsmanIndex = 2;
         
-        this.setupEventListeners();
-    }
-
-    setupEventListeners() {
-        this.startButton.addEventListener('click', () => this.startMatch());
-        this.pauseButton.addEventListener('click', () => this.pauseMatch());
-    }
-
-    startMatch() {
-        if (!this.isRunning) {
-            this.isRunning = true;
-            this.startButton.disabled = true;
-            this.pauseButton.disabled = false;
-            this.addCommentary("Welcome to the match! India vs Australia is about to begin!");
-            this.addCommentary(`${this.currentBatsman} and ${this.nonStriker} are at the crease. ${this.currentBowler} to bowl.`);
-            this.simulateBall();
-        }
-    }
-
-    pauseMatch() {
-        this.isRunning = false;
-        this.startButton.disabled = false;
-        this.pauseButton.disabled = true;
+        // Start the match automatically
+        this.addCommentary("Welcome to the match! India vs Australia is about to begin!");
+        this.addCommentary(`${this.currentBatsman} and ${this.nonStriker} are at the crease. ${this.currentBowler} to bowl.`);
+        this.simulateBall();
     }
 
     updateScore() {
@@ -135,14 +114,12 @@ class CricketMatch {
     }
 
     simulateBall() {
-        if (!this.isRunning) return;
-
         // Simulate ball outcome
         const random = Math.random();
         let runs = 0;
         let isWicket = false;
 
-        if (random < 0.2) { // 20% chance of wicket (increased from 10%)
+        if (random < 0.2) { // 20% chance of wicket
             isWicket = true;
             this.wickets++;
         } else if (random < 0.4) { // 20% chance of 0 runs
@@ -175,7 +152,7 @@ class CricketMatch {
         // Update score display
         this.updateScore();
 
-        // Schedule next ball with increased delay (8 seconds instead of 5)
+        // Schedule next ball
         setTimeout(() => this.simulateBall(), 8000);
     }
 }
