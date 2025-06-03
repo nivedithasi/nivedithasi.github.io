@@ -12,6 +12,48 @@ class CricketMatch {
         this.startButton = document.getElementById('start-match');
         this.pauseButton = document.getElementById('pause-match');
         
+        // Team definitions
+        this.indiaTeam = [
+            'Rohit Sharma (Captain)',
+            'Shubman Gill (Vice-Captain)',
+            'Virat Kohli',
+            'KL Rahul (Wicketkeeper)',
+            'Rishabh Pant (Wicketkeeper)',
+            'Hardik Pandya',
+            'Axar Patel',
+            'Ravindra Jadeja',
+            'Washington Sundar',
+            'Kuldeep Yadav',
+            'Mohammed Shami',
+            'Arshdeep Singh',
+            'Harshit Rana',
+            'Varun Chakravarthy'
+        ];
+
+        this.australiaTeam = [
+            'Steve Smith (Captain)',
+            'Travis Head',
+            'Marnus Labuschagne',
+            'Glenn Maxwell',
+            'Josh Inglis (Wicketkeeper)',
+            'Alex Carey (Wicketkeeper)',
+            'Jake Fraser-McGurk',
+            'Matthew Short',
+            'Aaron Hardie',
+            'Ben Dwarshuis',
+            'Sean Abbott',
+            'Nathan Ellis',
+            'Spencer Johnson',
+            'Tanveer Sangha',
+            'Adam Zampa'
+        ];
+
+        // Current players
+        this.currentBatsman = this.indiaTeam[0];
+        this.nonStriker = this.indiaTeam[1];
+        this.currentBowler = this.australiaTeam[10]; // Starting with Sean Abbott
+        this.nextBatsmanIndex = 2;
+        
         this.setupEventListeners();
     }
 
@@ -25,6 +67,8 @@ class CricketMatch {
             this.isRunning = true;
             this.startButton.disabled = true;
             this.pauseButton.disabled = false;
+            this.addCommentary("Welcome to the match! India vs Australia is about to begin!");
+            this.addCommentary(`${this.currentBatsman} and ${this.nonStriker} are at the crease. ${this.currentBowler} to bowl.`);
             this.simulateBall();
         }
     }
@@ -47,6 +91,10 @@ class CricketMatch {
         this.commentaryFeed.insertBefore(commentaryItem, this.commentaryFeed.firstChild);
     }
 
+    getRandomPlayer(team) {
+        return team[Math.floor(Math.random() * team.length)];
+    }
+
     generateCommentary(runs, isWicket) {
         const shotTypes = ['drives', 'cuts', 'pulls', 'sweeps', 'defends', 'lofts'];
         const shotType = shotTypes[Math.floor(Math.random() * shotTypes.length)];
@@ -61,17 +109,20 @@ class CricketMatch {
                 'run out!'
             ];
             const wicketType = wicketTypes[Math.floor(Math.random() * wicketTypes.length)];
-            return `WICKET! ${wicketType}`;
+            const newBatsman = this.indiaTeam[this.nextBatsmanIndex];
+            this.nextBatsmanIndex = (this.nextBatsmanIndex + 1) % this.indiaTeam.length;
+            this.currentBatsman = newBatsman;
+            return `WICKET! ${this.currentBatsman} ${wicketType} ${this.currentBowler} strikes! ${newBatsman} comes to the crease.`;
         }
 
         if (runs === 0) {
-            return `Good delivery, batsman ${shotType} but can't get it away.`;
+            return `${this.currentBatsman} ${shotType} but can't get it away. Good delivery from ${this.currentBowler}.`;
         } else if (runs === 4) {
-            return `FOUR! Beautiful ${shotType} through the covers!`;
+            return `FOUR! ${this.currentBatsman} with a beautiful ${shotType} through the covers! ${this.currentBowler} looks frustrated.`;
         } else if (runs === 6) {
-            return `SIX! Massive ${shotType} over the boundary!`;
+            return `SIX! ${this.currentBatsman} with a massive ${shotType} over the boundary! ${this.currentBowler} under pressure.`;
         } else {
-            return `${runs} runs, batsman ${shotType} and takes ${runs} run${runs > 1 ? 's' : ''}.`;
+            return `${runs} runs, ${this.currentBatsman} ${shotType} and takes ${runs} run${runs > 1 ? 's' : ''}.`;
         }
     }
 
@@ -104,6 +155,9 @@ class CricketMatch {
         if (this.balls === 6) {
             this.overs++;
             this.balls = 0;
+            // Change bowler after every over
+            this.currentBowler = this.getRandomPlayer(this.australiaTeam);
+            this.addCommentary(`End of the over. ${this.currentBowler} will bowl the next over.`);
         }
 
         // Generate and add commentary
@@ -113,8 +167,8 @@ class CricketMatch {
         // Update score display
         this.updateScore();
 
-        // Schedule next ball
-        setTimeout(() => this.simulateBall(), 3000);
+        // Schedule next ball with increased delay (5 seconds instead of 3)
+        setTimeout(() => this.simulateBall(), 5000);
     }
 }
 
