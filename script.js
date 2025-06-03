@@ -109,11 +109,18 @@ class CricketMatch {
                 'run out!'
             ];
             const wicketType = wicketTypes[Math.floor(Math.random() * wicketTypes.length)];
-            const dismissedBatsman = this.currentBatsman;
+            
+            // Get the new batsman first
             const newBatsman = this.indiaTeam[this.nextBatsmanIndex];
+            // Create the commentary with the current batsman (who got out)
+            const commentary = `WICKET! ${this.currentBatsman} ${wicketType} ${this.currentBowler} strikes! ${newBatsman} comes to the crease.`;
+            
+            // Update the next batsman index
             this.nextBatsmanIndex = (this.nextBatsmanIndex + 1) % this.indiaTeam.length;
+            // Update current batsman after creating the commentary
             this.currentBatsman = newBatsman;
-            return `WICKET! ${dismissedBatsman} ${wicketType} ${this.currentBowler} strikes! ${newBatsman} comes to the crease.`;
+            
+            return commentary;
         }
 
         if (runs === 0) {
