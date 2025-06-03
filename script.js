@@ -109,10 +109,11 @@ class CricketMatch {
                 'run out!'
             ];
             const wicketType = wicketTypes[Math.floor(Math.random() * wicketTypes.length)];
+            const dismissedBatsman = this.currentBatsman;
             const newBatsman = this.indiaTeam[this.nextBatsmanIndex];
             this.nextBatsmanIndex = (this.nextBatsmanIndex + 1) % this.indiaTeam.length;
             this.currentBatsman = newBatsman;
-            return `WICKET! ${this.currentBatsman} ${wicketType} ${this.currentBowler} strikes! ${newBatsman} comes to the crease.`;
+            return `WICKET! ${dismissedBatsman} ${wicketType} ${this.currentBowler} strikes! ${newBatsman} comes to the crease.`;
         }
 
         if (runs === 0) {
@@ -167,8 +168,8 @@ class CricketMatch {
         // Update score display
         this.updateScore();
 
-        // Schedule next ball with increased delay (5 seconds instead of 3)
-        setTimeout(() => this.simulateBall(), 5000);
+        // Schedule next ball with increased delay (8 seconds instead of 5)
+        setTimeout(() => this.simulateBall(), 8000);
     }
 }
 
