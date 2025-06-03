@@ -52,7 +52,11 @@ class CricketMatch {
         this.currentBowler = this.australiaTeam[10]; // Starting with Sean Abbott
         this.nextBatsmanIndex = 2;
         
-        // Start the match automatically
+        // Start the match immediately
+        this.initializeMatch();
+    }
+
+    initializeMatch() {
         this.addCommentary("Welcome to the match! India vs Australia is about to begin!");
         this.addCommentary(`${this.currentBatsman} and ${this.nonStriker} are at the crease. ${this.currentBowler} to bowl.`);
         this.simulateBall();
@@ -157,7 +161,5 @@ class CricketMatch {
     }
 }
 
-// Initialize the match when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    const match = new CricketMatch();
-}); 
+// Start the match immediately when the script loads
+const match = new CricketMatch(); 
