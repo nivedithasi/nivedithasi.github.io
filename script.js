@@ -142,16 +142,16 @@ class CricketMatch {
         let runs = 0;
         let isWicket = false;
 
-        if (random < 0.1) { // 10% chance of wicket
+        if (random < 0.3) { // 20% chance of wicket (increased from 10%)
             isWicket = true;
             this.wickets++;
-        } else if (random < 0.3) { // 20% chance of 0 runs
+        } else if (random < 0.4) { // 20% chance of 0 runs
             runs = 0;
-        } else if (random < 0.6) { // 30% chance of 1-3 runs
+        } else if (random < 0.7) { // 30% chance of 1-3 runs
             runs = Math.floor(Math.random() * 3) + 1;
-        } else if (random < 0.85) { // 25% chance of 4 runs
+        } else if (random < 0.9) { // 20% chance of 4 runs
             runs = 4;
-        } else { // 15% chance of 6 runs
+        } else { // 10% chance of 6 runs
             runs = 6;
         }
 
