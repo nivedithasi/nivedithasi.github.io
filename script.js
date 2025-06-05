@@ -169,8 +169,8 @@ class CricketMatch {
         // Update score display
         this.updateScore();
 
-        // Schedule next ball
-        setTimeout(() => this.simulateBall(), 8000);
+        // Schedule next ball with 20 second delay
+        setTimeout(() => this.simulateBall(), 20000);
     }
 }
 
