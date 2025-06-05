@@ -139,11 +139,11 @@ class CricketMatch {
         if (random < 0.2) { // 20% chance of wicket
             isWicket = true;
             this.wickets++;
-        } else if (random < 0.4) { // 20% chance of 0 runs
+        } else if (random < 0.3) { // 10% chance of 0 runs
             runs = 0;
-        } else if (random < 0.7) { // 30% chance of 1-3 runs
+        } else if (random < 0.5) { // 20% chance of 1-3 runs
             runs = Math.floor(Math.random() * 3) + 1;
-        } else if (random < 0.9) { // 20% chance of 4 runs
+        } else if (random < 0.9) { // 40% chance of 4 runs
             runs = 4;
         } else { // 10% chance of 6 runs
             runs = 6;
