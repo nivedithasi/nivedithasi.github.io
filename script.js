@@ -136,7 +136,7 @@ class CricketMatch {
         let runs = 0;
         let isWicket = false;
 
-        if (random < 0.2) { // 20% chance of wicket
+        if (random < 0.25) { // 20% chance of wicket
             isWicket = true;
             this.wickets++;
         } else if (random < 0.3) { // 10% chance of 0 runs
