@@ -16,6 +16,9 @@ class CricketMatch {
             return;
         }
 
+        // Initialize RNG
+        this.rng = new Math.seedrandom('hello');
+
         // Clear initial loading message
         this.commentaryFeed.innerHTML = '';
         
@@ -132,21 +135,22 @@ class CricketMatch {
     simulateBall() {
         console.log('Simulating ball...');
         // Simulate ball outcome
-        const random = Math.random();
+        
+        const random = this.rng();
+        console.log('RNG value:', random);
         let runs = 0;
         let isWicket = false;
 
-        if (random < 0.4) { // 20% chance of wicket
+        if (random < 0.5) { // 40% chance of wicket
             isWicket = true;
             this.wickets++;
-        // } else if (random < 0) { // 10% chance of 0 runs
-        //     runs = 0;
-        // } else if (random < 0.5) { // 20% chance of 1-3 runs
-        //     runs = Math.floor(Math.random() * 3) + 1;
-        } else if (random < 0.9) { // 40% chance of 4 runs
+            console.log('Wicket! RNG was:', random);
+        } else if (random < 0.9) { // 50% chance of 4 runs
             runs = 4;
+            console.log('Four runs! RNG was:', random);
         } else { // 10% chance of 6 runs
             runs = 6;
+            console.log('Six runs! RNG was:', random);
         }
 
         // Update score
@@ -170,7 +174,7 @@ class CricketMatch {
         this.updateScore();
 
         // Schedule next ball with 20 second delay
-        setTimeout(() => this.simulateBall(), 20000);
+        setTimeout(() => this.simulateBall(), 10000);
     }
 }
 
