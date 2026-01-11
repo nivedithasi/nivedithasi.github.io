@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <title>💡 Niveditha Iyer</title>
 
@@ -47,7 +48,7 @@
         .header {
             text-align: left;
             width: 50%;
-            margin: 5% auto 1% auto;
+            margin: 0 auto 1% auto;
         }
 
         .header h3 {
@@ -60,9 +61,19 @@
             color: #777;
         }
 
+        .header-email {
+            display: inline-block;
+            margin-left: 12px;
+        }
+
+        .header-email a {
+            text-decoration: none;
+            font-size: 1.2rem;
+        }
+
         /* Content */
         .content {
-            margin-bottom: 50px;
+            margin-bottom: 0;
         }
 
         .content p {
@@ -75,9 +86,12 @@
         }
 
         .content p:last-child {
-            padding-bottom: 4%
+            padding-bottom: 0;
         }
 
+        .semi-bold {
+            font-weight: 600;
+        }
 
         .content a {
             color: #1a8e18;
@@ -99,6 +113,128 @@
             font-family: "EB Garamond", serif;
         }
 
+        /* Research Section */
+        .research {
+            width: 50%;
+            margin: 1% auto 1% auto;
+        }
+
+        .research h4 {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .research ul {
+            list-style-type: disc;
+            list-style-position: outside;
+            padding: 1px;
+            margin-left: 30px;
+        }
+
+        .research ul li {
+            font-size: 1.1rem;
+            color: #555;
+            width: 100%;
+            margin: 0 auto 5px auto;
+            font-family: "EB Garamond", serif;
+        }
+
+        .research ul li a {
+            color: #1a8e18;
+            font-weight: normal;
+        }
+
+        .research-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            width: 18px;
+            height: 18px;
+            color: #1a8e18;
+        }
+
+        .research-icon-link {
+            text-decoration: none;
+        }
+
+        /* Research Minis Section */
+        .research-minis {
+            margin-top: 20px;
+        }
+
+        .research-minis h5 {
+            font-size: 1rem;
+            color: #777;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .research-minis ul {
+            list-style-type: disc;
+            list-style-position: outside;
+            padding: 1px;
+            margin-left: 30px;
+        }
+
+        .research-minis ul li {
+            font-size: 1.1rem;
+            color: #555;
+            width: 100%;
+            margin: 0 auto 5px auto;
+            font-family: "EB Garamond", serif;
+        }
+
+        .research-minis ul li a {
+            color: #1a8e18;
+            font-weight: normal;
+        }
+
+        .research-minis-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 8px;
+            width: 18px;
+            height: 18px;
+            color: #1a8e18;
+        }
+
+        .research-minis-icon-link {
+            text-decoration: none;
+        }
+
+        /* Teaching Section */
+        .teaching {
+            width: 50%;
+            margin: 1% auto 1% auto;
+        }
+
+        .teaching h4 {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px 20px;
+            margin-top: 10px;
+        }
+
+        .teaching-item {
+            font-size: 1.1rem;
+            color: #555;
+            font-family: "EB Garamond", serif;
+        }
+
+        .teaching-item a {
+            color: #1a8e18;
+            font-weight: normal;
+        }
+
         /* Media Queries for Responsiveness */
 
         /* For small screens (mobile phones) */
@@ -115,6 +251,10 @@
 
             .header p {
                 font-size: 1rem; /* Smaller font size for phones */
+            }
+
+            .header-email {
+                font-size: 1rem;
             }
 
             /* Reducing font size for all text on phones */
@@ -138,6 +278,38 @@
             .content a {
                 font-size: 0.95rem; /* Slightly smaller links */
             }
+
+            .research {
+                width: 90%;
+            }
+
+            .research h4 {
+                font-size: 1rem;
+            }
+
+            .research ul li {
+                width: 100%;
+            }
+
+            .research-minis h5 {
+                font-size: 0.9rem;
+            }
+
+            .research-minis ul li {
+                width: 100%;
+            }
+
+            .teaching {
+                width: 90%;
+            }
+
+            .teaching h4 {
+                font-size: 1rem;
+            }
+
+            .teaching-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
 
         /* For very small screens (e.g., small mobile phones) */
@@ -147,6 +319,10 @@
             }
 
             .header p {
+                font-size: 0.9rem;
+            }
+
+            .header-email {
                 font-size: 0.9rem;
             }
 
@@ -167,6 +343,42 @@
             .content a {
                 font-size: 0.9rem; /* Slightly smaller links on very small screens */
             }
+
+            .research {
+                width: 100%;
+            }
+
+            .research h4 {
+                font-size: 0.9rem;
+            }
+
+            .research ul li {
+                width: 100%;
+            }
+
+            .research-minis {
+                width: 100%;
+            }
+
+            .research-minis h4 {
+                font-size: 0.9rem;
+            }
+
+            .research-minis ul li {
+                width: 100%;
+            }
+
+            .teaching {
+                width: 100%;
+            }
+
+            .teaching h4 {
+                font-size: 0.9rem;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* For medium screens (tablets) */
@@ -180,6 +392,10 @@
                 font-size: 1.3rem;
             }
 
+            .header-email {
+                font-size: 1rem;
+            }
+
             .content p,
             .content ul li {
                 width: 90%; /* Adjust width for tablets */
@@ -189,6 +405,38 @@
             .content a {
                 font-size: 1rem;
             }
+
+            .research {
+                width: 90%;
+            }
+
+            .research h4 {
+                font-size: 1rem;
+            }
+
+            .research ul li {
+                width: 100%;
+            }
+
+            .research-minis h5 {
+                font-size: 0.9rem;
+            }
+
+            .research-minis ul li {
+                width: 100%;
+            }
+
+            .teaching {
+                width: 90%;
+            }
+
+            .teaching h4 {
+                font-size: 1rem;
+            }
+
+            .teaching-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -196,26 +444,58 @@
 <body>
     <div class="header">
         <h3>Niveditha S. Iyer</h3>
-        <p>Stanford and Bangalore</p>
+        <p>Stanford and Bangalore <span class="header-email"><a href="mailto:nivsiyer@cs.stanford.edu">📬</a></span></p>
     </div>
 
     <div class="content">
-        <p>I love computers, languages, neuroscience and music. A few things I've enjoyed:
+        <p>I love computers, neuroscience and music. Most recently I built <span class="semi-bold">compute-efficient and sparse AI architectures</span> at <a href="https://crystalai.org/">Crystal AI</a>.
+            Previously, I've enjoyed -
         <ul>
             <li> self-correcting language models for information retrieval at <a href="https://www.deshawresearch.com/">DE Shaw</a> </li>
-            <li> transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute of MIT and Harvard</a> (<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1">paper</a>) </li>
             <li> GNNs for pharmacokinetics prediction at <a href="https://www.deshawresearch.com/">DE Shaw Research</a> </li>
             <li> high-throughput computer vision pipelines at <a href="https://research.google/">Google Research</a> </li>
-            <li><a href="assets/Ghostwriter_Paper.pdf" target="_blank">lyric generators</a> for soundtracks (CS224N Best Project)</li>
-            <li> self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> (<a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1">paper</a>)</li>
-            <li> <a href="https://github.com/nivedithasi/CRUMPL">image "uncrumplers"</a> (CS231N Best Project) </li>
-            <li> models of dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
-            <li>  <a href="https://github.com/google/BIG-bench">tripping up LLMs</a>, quantifying preference pluralism (CS329H Outstanding Project), swarm robots, crochet jackets, charcoal portraits and an autonomous boat :) </li>
         </ul>
 
-        <p><br>These days I conduct <b>research on compute-efficient AI models</b>. I also really enjoy teaching (Intro Programming, Operating Systems, Databases, Progamming FPGAs, Machine Learning) and occasionally post <a href="https://www.youtube.com/@nivedithasiyer">YouTube</a> videos about cool concepts.</p>
+    </div>
+
+    <div class="research">
+        <h4>Research</h4>
+        <ul>
+            <li> transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute</a> (presented at <a href="https://sbi2.org/conference/" target="_blank">Society of Biomolecular Imaging and Informatics Conference</a>)<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+            <li> self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> <a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+            <li> determining LLM abilities to reason about information sufficiency <a href="https://github.com/google/BIG-bench">BIG-bench</a><a href="https://arxiv.org/pdf/2206.04615" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a> </li>
+            <li> dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
+        </ul>
+
+        <div class="research-minis">
+            <h5>Research Minis</h5>
+            <ul>
+                <li>Lyric Generators for Soundtracks (<a href="https://cs224n.stanford.edu/" target="_blank">CS224N</a> Best Project)<a href="assets/Ghostwriter_Paper.pdf" target="_blank" class="research-minis-icon-link"><i data-lucide="file" class="research-minis-icon"></i></a></li>
+                <li>Image "Uncrumplers" (<a href="https://cs231n.stanford.edu/" target="_blank">CS231N</a> Best Project)<a href="assets/Sixteen_Pixels.pdf" target="_blank" class="research-minis-icon-link"><i data-lucide="file" class="research-minis-icon"></i></a></li>
+                <li>Quantifying Preference Pluralism (<a href="https://cs329h.stanford.edu/" target="_blank">CS329H</a> Outstanding Project)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="teaching">
+        <h4>Teaching</h4>
+        <div class="teaching-grid">
+            <div class="teaching-item">Intro Programming (<a href="https://cs106a.stanford.edu/" target="_blank">CS106A</a>)</div>
+            <div class="teaching-item">Operating Systems (<a href="https://cs111.stanford.edu/" target="_blank">CS111</a>)</div>
+            <div class="teaching-item">Databases (<a href="https://cs145.stanford.edu/" target="_blank">CS145</a>)</div>
+            <div class="teaching-item">Programming FPGAs (<a href="https://explorecourses.stanford.edu/search?view=catalog&filter-coursestatus-Active=on&q=EE%20108:%20Digital%20System%20Design&academicYear=20142015" target="_blank">EE108</a>)</div>
+            <div class="teaching-item">Machine Learning (<a href="https://cs229.stanford.edu/" target="_blank">CS229</a>)</div>
+            <div class="teaching-item"><a href="https://www.youtube.com/@nivedithasiyer" target="_blank">YouTube</a> videos on cool concepts</div>
+        </div>
+    </div>
+
+    <div class="content">
         <p><br>📬 nivsiyer@cs.stanford.edu</p>
     </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
 </body>
 
 </html>
