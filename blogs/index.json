@@ -2,7 +2,10 @@
     {
         "title": "Can Khan Academy Help Transform India's Public Schools?",
         "slug": "khan-academy",
-        "date": "2020-11-15",
         "description": "India needs a Green Revolution in Education. Salman Khan could become the Norman Borlaug of our times."
+    },
+    {
+        "title": "Fridge",
+        "slug": "fridge"
     }
 ]

@@ -127,13 +127,6 @@
             margin-bottom: 4px;
         }
 
-        .post-card-date {
-            font-family: "Manrope", sans-serif;
-            font-size: 0.85rem;
-            color: #999;
-            margin-bottom: 8px;
-        }
-
         .post-card-description {
             font-family: "EB Garamond", serif;
             font-size: 1.05rem;
@@ -210,8 +203,7 @@
 
                 card.innerHTML =
                     '<div class="post-card-title">' + escapeHtml(post.title) + '</div>' +
-                    '<div class="post-card-date">' + formatDate(post.date) + '</div>' +
-                    '<div class="post-card-description">' + escapeHtml(post.description) + '</div>';
+                    '<div class="post-card-description">' + escapeHtml(post.description ?? '') + '</div>';
 
                 card.style.transitionDelay = (index * 0.1) + 's';
 
@@ -229,15 +221,6 @@
 
             document.querySelectorAll('.post-card').forEach(function(card) {
                 observer.observe(card);
-            });
-        }
-
-        function formatDate(dateStr) {
-            var date = new Date(dateStr + 'T00:00:00');
-            return date.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
             });
         }
 
