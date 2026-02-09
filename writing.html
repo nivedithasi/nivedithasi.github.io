@@ -100,23 +100,6 @@
             text-decoration: none;
             padding: 24px 0;
             border-bottom: 1px solid #f0eeec;
-            opacity: 0;
-            transform: translateY(16px);
-            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.25s ease, padding-left 0.25s ease;
-        }
-
-        .post-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .post-card:hover {
-            background-color: #faf8f6;
-            padding-left: 12px;
-            margin-left: -12px;
-            padding-right: 12px;
-            margin-right: -12px;
-            border-radius: 6px;
         }
 
         .post-card-title {
@@ -125,6 +108,23 @@
             font-weight: 600;
             color: #333;
             margin-bottom: 4px;
+            position: relative;
+        }
+
+        .post-card-arrow {
+            position: absolute;
+            right: 100%;
+            margin-right: 8px;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            color: #1a8e18;
+            font-size: 1rem;
+        }
+
+        .post-card:hover .post-card-arrow {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .post-card-description {
@@ -202,26 +202,12 @@
                 card.className = 'post-card';
 
                 card.innerHTML =
-                    '<div class="post-card-title">' + escapeHtml(post.title) + '</div>' +
+                    '<div class="post-card-title"><span class="post-card-arrow">&rarr;</span>' + escapeHtml(post.title) + '</div>' +
                     '<div class="post-card-description">' + escapeHtml(post.description ?? '') + '</div>';
-
-                card.style.transitionDelay = (index * 0.1) + 's';
 
                 container.appendChild(card);
             });
 
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            document.querySelectorAll('.post-card').forEach(function(card) {
-                observer.observe(card);
-            });
         }
 
         function escapeHtml(str) {
