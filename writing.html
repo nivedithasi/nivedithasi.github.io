@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Niveditha S. Iyer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+    <title>Writing | Niveditha Iyer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            font-family: "Manrope", sans-serif;
+            height: 100%;
+            color: #333;
+            background-color: #fffdfc;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            justify-content: flex-start;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInPage 0.6s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        /* Nav */
+        .site-nav {
+            width: 50%;
+            margin: 0 auto 20px auto;
+            padding: 0 0 10px 0;
+            font-family: "Manrope", sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-link {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #333;
+        }
+
+        .nav-separator {
+            color: #ccc;
+            margin: 0 8px;
+        }
+
+        /* Writing header */
+        .writing-header {
+            width: 50%;
+            margin: 0 auto 30px auto;
+            text-align: left;
+        }
+
+        .writing-header h3 {
+            font-size: 2rem;
+            font-family: "Manrope", sans-serif;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .writing-header p {
+            font-size: 1.1rem;
+            color: #777;
+            font-family: "EB Garamond", serif;
+        }
+
+        /* Posts container */
+        .posts-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        /* Post card */
+        .post-card {
+            display: block;
+            text-decoration: none;
+            padding: 24px 0;
+            border-bottom: 1px solid #f0eeec;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.5s ease, transform 0.5s ease, background-color 0.25s ease, padding-left 0.25s ease;
+        }
+
+        .post-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .post-card:hover {
+            background-color: #faf8f6;
+            padding-left: 12px;
+            margin-left: -12px;
+            padding-right: 12px;
+            margin-right: -12px;
+            border-radius: 6px;
+        }
+
+        .post-card-title {
+            font-family: "Manrope", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .post-card-date {
+            font-family: "Manrope", sans-serif;
+            font-size: 0.85rem;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .post-card-description {
+            font-family: "EB Garamond", serif;
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .site-nav,
+            .writing-header,
+            .posts-container {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-nav,
+            .writing-header,
+            .posts-container {
+                width: 90%;
+            }
+
+            .writing-header h3 {
+                font-size: 1.5rem;
+            }
+
+            .post-card-title {
+                font-size: 1.05rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-nav,
+            .writing-header,
+            .posts-container {
+                width: 100%;
+            }
+
+            .writing-header h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="/" class="nav-link">Home</a>
+        <span class="nav-separator">/</span>
+        <a href="/writing.html" class="nav-link active">Writing</a>
+    </nav>
+
+    <div class="writing-header">
+        <h3>Writing</h3>
+    </div>
+
+    <div class="posts-container" id="posts-container">
+    </div>
+
+    <script>
+        async function loadPosts() {
+            const response = await fetch('/blogs/index.json');
+            const posts = await response.json();
+
+            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            const container = document.getElementById('posts-container');
+
+            posts.forEach((post, index) => {
+                const card = document.createElement('a');
+                card.href = '/post.html?slug=' + encodeURIComponent(post.slug);
+                card.className = 'post-card';
+
+                card.innerHTML =
+                    '<div class="post-card-title">' + escapeHtml(post.title) + '</div>' +
+                    '<div class="post-card-date">' + formatDate(post.date) + '</div>' +
+                    '<div class="post-card-description">' + escapeHtml(post.description) + '</div>';
+
+                card.style.transitionDelay = (index * 0.1) + 's';
+
+                container.appendChild(card);
+            });
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.post-card').forEach(function(card) {
+                observer.observe(card);
+            });
+        }
+
+        function formatDate(dateStr) {
+            var date = new Date(dateStr + 'T00:00:00');
+            return date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function escapeHtml(str) {
+            var div = document.createElement('div');
+            div.appendChild(document.createTextNode(str));
+            return div.innerHTML;
+        }
+
+        loadPosts();
+    </script>
+</body>
+
+</html>

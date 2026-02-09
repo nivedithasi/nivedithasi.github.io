@@ -44,6 +44,32 @@
         }
 
 
+        /* Nav */
+        .site-nav {
+            width: 50%;
+            margin: 0 auto 20px auto;
+            padding: 0 0 10px 0;
+            font-family: "Manrope", sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.03em;
+        }
+
+        .nav-link {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #333;
+        }
+
+        .nav-separator {
+            color: #ccc;
+            margin: 0 8px;
+        }
+
         /* Header */
         .header {
             text-align: left;
@@ -239,6 +265,10 @@
 
         /* For small screens (mobile phones) */
         @media (max-width: 768px) {
+            .site-nav {
+                width: 90%;
+            }
+
             .header {
                 width: 100%;
                 text-align: left;
@@ -314,6 +344,10 @@
 
         /* For very small screens (e.g., small mobile phones) */
         @media (max-width: 480px) {
+            .site-nav {
+                width: 100%;
+            }
+
             .header h3 {
                 font-size: 0.7rem; /* Even smaller font size for small phones */
             }
@@ -383,6 +417,10 @@
 
         /* For medium screens (tablets) */
         @media (max-width: 1024px) {
+            .site-nav {
+                width: 90%;
+            }
+
             .header {
                 width: 90%;
                 text-align: left;
@@ -442,6 +480,12 @@
 </head>
 
 <body>
+    <nav class="site-nav">
+        <a href="/" class="nav-link active">Home</a>
+        <span class="nav-separator">/</span>
+        <a href="/writing.html" class="nav-link">Writing</a>
+    </nav>
+
     <div class="header">
         <h3>Niveditha S. Iyer</h3>
         <p>Stanford and Bangalore <span class="header-email"><a href="mailto:nivsiyer@cs.stanford.edu">📬</a></span></p>
