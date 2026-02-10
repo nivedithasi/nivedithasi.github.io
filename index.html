@@ -46,7 +46,7 @@
 
         /* Nav */
         .site-nav {
-            width: 50%;
+            width: 60%;
             margin: 0 auto 20px auto;
             padding: 0 0 10px 0;
             font-family: "Manrope", sans-serif;
@@ -73,7 +73,7 @@
         /* Header */
         .header {
             text-align: left;
-            width: 50%;
+            width: 60%;
             margin: 0 auto 1% auto;
         }
 
@@ -99,6 +99,7 @@
 
         /* Content */
         .content {
+            margin-top: 2rem;
             margin-bottom: 0;
         }
 
@@ -106,7 +107,7 @@
             font-size: 1.1rem;
             color: #555;
             text-align: left;
-            width: 50%;
+            width: 60%;
             margin: 0 auto 10px auto;
             font-family: "EB Garamond", serif;
         }
@@ -134,14 +135,14 @@
         .content ul li {
             font-size: 1.1rem;
             color: #555;
-            width: 50%;
+            width: 60%;
             margin: 0 auto 5px auto;
             font-family: "EB Garamond", serif;
         }
 
         /* Research Section */
         .research {
-            width: 50%;
+            width: 60%;
             margin: 1% auto 1% auto;
         }
 
@@ -185,61 +186,27 @@
             text-decoration: none;
         }
 
-        /* Research Minis Section */
-        .research-minis {
-            margin-top: 20px;
-        }
-
-        .research-minis h5 {
-            font-size: 1rem;
-            color: #777;
-            margin-bottom: 10px;
-            font-weight: normal;
-        }
-
-        .research-minis ul {
-            list-style-type: disc;
+        .research ul ul {
+            list-style-type: circle;
             list-style-position: outside;
-            padding: 1px;
-            margin-left: 30px;
+            margin: 5px 0 5px 20px;
+            padding-left: 10px;
         }
 
-        .research-minis ul li {
-            font-size: 1.1rem;
-            color: #555;
-            width: 100%;
-            margin: 0 auto 5px auto;
-            font-family: "EB Garamond", serif;
-        }
-
-        .research-minis ul li a {
-            color: #1a8e18;
-            font-weight: normal;
-        }
-
-        .research-minis-icon {
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 8px;
-            width: 18px;
-            height: 18px;
-            color: #1a8e18;
-        }
-
-        .research-minis-icon-link {
-            text-decoration: none;
+        .research ul ul li {
+            margin: 2px 0;
         }
 
         /* Teaching Section */
         .teaching {
-            width: 50%;
-            margin: 1% auto 1% auto;
+            width: 60%;
+            margin: 1% auto 0 auto;
         }
 
         .teaching h4 {
             font-size: 1.2rem;
             color: #777;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             font-weight: normal;
         }
 
@@ -266,7 +233,7 @@
         /* For small screens (mobile phones) */
         @media (max-width: 768px) {
             .site-nav {
-                width: 90%;
+                width: 100%;
             }
 
             .header {
@@ -297,7 +264,7 @@
 
             .content p,
             .content ul li {
-                width: 90%; /* Adjust width for smaller screens */
+                width: 100%;
                 margin: 0 auto;
             }
 
@@ -310,7 +277,7 @@
             }
 
             .research {
-                width: 90%;
+                width: 95%;
             }
 
             .research h4 {
@@ -321,16 +288,8 @@
                 width: 100%;
             }
 
-            .research-minis h5 {
-                font-size: 0.9rem;
-            }
-
-            .research-minis ul li {
-                width: 100%;
-            }
-
             .teaching {
-                width: 90%;
+                width: 100%;
             }
 
             .teaching h4 {
@@ -390,18 +349,6 @@
                 width: 100%;
             }
 
-            .research-minis {
-                width: 100%;
-            }
-
-            .research-minis h4 {
-                font-size: 0.9rem;
-            }
-
-            .research-minis ul li {
-                width: 100%;
-            }
-
             .teaching {
                 width: 100%;
             }
@@ -418,11 +365,11 @@
         /* For medium screens (tablets) */
         @media (max-width: 1024px) {
             .site-nav {
-                width: 90%;
+                width: 95%;
             }
 
             .header {
-                width: 90%;
+                width: 95%;
                 text-align: left;
             }
 
@@ -436,7 +383,7 @@
 
             .content p,
             .content ul li {
-                width: 90%; /* Adjust width for tablets */
+                width: 95%;
                 font-size: 1rem;
             }
 
@@ -445,7 +392,7 @@
             }
 
             .research {
-                width: 90%;
+                width: 95%;
             }
 
             .research h4 {
@@ -456,16 +403,8 @@
                 width: 100%;
             }
 
-            .research-minis h5 {
-                font-size: 0.9rem;
-            }
-
-            .research-minis ul li {
-                width: 100%;
-            }
-
             .teaching {
-                width: 90%;
+                width: 95%;
             }
 
             .teaching h4 {
@@ -488,11 +427,11 @@
 
     <div class="header">
         <h3>Niveditha S. Iyer</h3>
-        <p>Stanford and Bangalore <span class="header-email"><a href="mailto:nivsiyer@cs.stanford.edu">📬</a></span></p>
+        <!-- <p>Stanford and Bangalore <span class="header-email"><a href="mailto:nivsiyer@cs.stanford.edu">📬</a></span></p> -->
     </div>
 
     <div class="content">
-        <p>I love computers, neuroscience and music. Most recently I built <span class="semi-bold">compute-efficient and sparse AI architectures</span> at <a href="https://crystalai.org/">Crystal AI</a>.
+        <p>I love computers, neuroscience and music. Most recently I built compute-efficient and sparse AI architectures at <a href="https://crystalai.org/">Crystal AI</a>.
             Previously, I've enjoyed -
         <ul>
             <li> self-correcting language models for information retrieval at <a href="https://www.deshawresearch.com/">DE Shaw</a> </li>
@@ -505,20 +444,18 @@
     <div class="research">
         <h4>Research</h4>
         <ul>
-            <li> transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute</a> (presented at <a href="https://sbi2.org/conference/" target="_blank">Society of Biomolecular Imaging and Informatics Conference</a>)<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-            <li> self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> <a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-            <li> determining LLM abilities to reason about information sufficiency <a href="https://github.com/google/BIG-bench">BIG-bench</a><a href="https://arxiv.org/pdf/2206.04615" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a> </li>
-            <li> dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
+            <li> Transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute</a> (presented at <a href="https://sbi2.org/conference/" target="_blank">SBI^2 Conference</a>)<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+            <li> Self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> <a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+            <li> Determining LLM abilities to reason about information sufficiency <a href="https://github.com/google/BIG-bench">BIG-bench</a><a href="https://arxiv.org/pdf/2206.04615" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a> </li>
+            <li> Dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
+            <li> Research Minis
+                <ul>
+                    <li>Lyric Generators for Soundtracks (<a href="https://cs224n.stanford.edu/" target="_blank">CS224N</a> Best Project)<a href="assets/Ghostwriter_Paper.pdf" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+                    <li>Image "Uncrumplers" (<a href="https://cs231n.stanford.edu/" target="_blank">CS231N</a> Best Project)<a href="assets/Sixteen_Pixels.pdf" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
+                    <li>Quantifying Preference Pluralism (<a href="https://cs329h.stanford.edu/" target="_blank">CS329H</a> Outstanding Project)</li>
+                </ul>
+            </li>
         </ul>
-
-        <div class="research-minis">
-            <h5>Research Minis</h5>
-            <ul>
-                <li>Lyric Generators for Soundtracks (<a href="https://cs224n.stanford.edu/" target="_blank">CS224N</a> Best Project)<a href="assets/Ghostwriter_Paper.pdf" target="_blank" class="research-minis-icon-link"><i data-lucide="file" class="research-minis-icon"></i></a></li>
-                <li>Image "Uncrumplers" (<a href="https://cs231n.stanford.edu/" target="_blank">CS231N</a> Best Project)<a href="assets/Sixteen_Pixels.pdf" target="_blank" class="research-minis-icon-link"><i data-lucide="file" class="research-minis-icon"></i></a></li>
-                <li>Quantifying Preference Pluralism (<a href="https://cs329h.stanford.edu/" target="_blank">CS329H</a> Outstanding Project)</li>
-            </ul>
-        </div>
     </div>
 
     <div class="teaching">
@@ -534,7 +471,7 @@
     </div>
 
     <div class="content">
-        <p><br>📬 nivsiyer@cs.stanford.edu</p>
+        <p>📬 nivsiyer@cs.stanford.edu</p>
     </div>
 
     <script>

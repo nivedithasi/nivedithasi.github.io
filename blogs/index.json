@@ -1,11 +1,24 @@
 [
     {
+        "title": "The Fridge",
+        "slug": "fridge"
+    },
+    {
         "title": "Can Khan Academy Help Transform India's Public Schools?",
         "slug": "khan-academy",
         "description": "India needs a Green Revolution in Education. Salman Khan could become the Norman Borlaug of our times."
     },
     {
-        "title": "Fridge",
-        "slug": "fridge"
+        "title": "The Indian Ration Card",
+        "slug": "ration-card",
+        "description": "How the Ration Card accidentally became an identity document long after its original purpose faded."
+    },
+    {
+        "title": "Sensory Pride & Prejudice",
+        "slug": "sensory-pride"
+    },
+    {
+        "title": "A Hope and a Prayer",
+        "slug": "homo-extraoirdinaire"
     }
 ]
