@@ -4,6 +4,6 @@ It's a wonder that the short silver refrigerator in the corner of my home in Ban
 
 I did not stop very often to look at the drawings when I lived at home. But a few weeks ago my mother sent me a picture of the kitchen and I noticed the fridge, feathery with the slips taped to its sides, ready to take flight.
 
-Today my wandering pencil occasionally sketches out a strawberry, daffodil or unicorn along the margins of a notebook or stray Post-It note. But I miss slowly observing and intentionally drawing.
+Today my wandering pencil occasionally sketches out a strawberry, daffodil or unicorn along the margins of a stray Post-It note. But I miss slowly observing and intentionally drawing.
 Drawing, for me, is a journey of self-revelation. I discover how my mind registers different facets of the world. It is for the same reason that I love studying student creations from an art class. I am amazed by how different minds work, producing such varied interpretations of the same still scene.
 
