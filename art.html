@@ -39,7 +39,8 @@
         body {
             display: flex;
             flex-direction: column;
-            padding: 40px 20px;
+            padding: 40px 20px 60px;
+            margin-bottom: 40px;
             justify-content: flex-start;
             line-height: 1.6;
             opacity: 0;
@@ -90,6 +91,7 @@
             display: flex;
             flex-direction: column;
             gap: 14px;
+            padding-bottom: 40px;
         }
 
         .gallery {
@@ -156,6 +158,13 @@
             max-width: 90vw;
             max-height: 85vh;
             object-fit: contain;
+            transform-origin: center center;
+            transition: transform 0.15s ease;
+            cursor: zoom-in;
+        }
+
+        .lightbox-content img.zoomed {
+            cursor: zoom-out;
         }
 
         .lightbox-caption {
@@ -224,18 +233,38 @@
         const lightboxImage = document.getElementById('lightbox-image');
         const lightboxCaption = document.getElementById('lightbox-caption');
 
+        let zoomLevel = 1;
+        const minZoom = 1;
+        const maxZoom = 3;
+
+        function applyZoom() {
+            lightboxImage.style.transform = `scale(${zoomLevel})`;
+            if (zoomLevel > 1) {
+                lightboxImage.classList.add('zoomed');
+            } else {
+                lightboxImage.classList.remove('zoomed');
+            }
+        }
+
+        function resetZoom() {
+            zoomLevel = 1;
+            applyZoom();
+        }
+
         function openLightbox(src, caption) {
             lightboxImage.src = src;
             lightboxImage.alt = caption || 'Artwork';
             lightboxCaption.textContent = caption || '';
             lightbox.classList.add('visible');
             lightbox.setAttribute('aria-hidden', 'false');
+            resetZoom();
         }
 
         function closeLightbox() {
             lightbox.classList.remove('visible');
             lightbox.setAttribute('aria-hidden', 'true');
             lightboxImage.src = '';
+            resetZoom();
         }
 
         lightbox.addEventListener('click', (event) => {
@@ -250,6 +279,19 @@
             }
         });
 
+        lightboxImage.addEventListener('click', () => {
+            zoomLevel = zoomLevel > 1 ? 1 : 2;
+            applyZoom();
+        });
+
+        lightboxImage.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            const delta = Math.sign(event.deltaY);
+            const step = 0.2;
+            zoomLevel = Math.min(maxZoom, Math.max(minZoom, zoomLevel - delta * step));
+            applyZoom();
+        }, { passive: false });
+
         fetch('assets/art/index.json')
             .then((res) => res.json())
             .then((items) => {
@@ -261,17 +303,24 @@
 
                 list.forEach((item) => {
                     const entry = typeof item === 'string'
-                        ? { src: `assets/art/${item}`, title: '' }
+                        ? { src: `assets/art/${item}`, preview: `assets/art/${item}`, title: '' }
                         : {
                             src: item.src?.startsWith('assets/')
                                 ? item.src
                                 : `assets/art/${item.src}`,
+                            preview: item.preview
+                                ? (item.preview.startsWith('assets/')
+                                    ? item.preview
+                                    : `assets/art/${item.preview}`)
+                                : (item.src?.startsWith('assets/')
+                                    ? item.src
+                                    : `assets/art/${item.src}`),
                             title: item.title || item.caption || ''
                         };
 
                     const card = document.createElement('div');
                     card.className = 'gallery-item';
-                    card.innerHTML = `<img src="${entry.src}" alt="${entry.title || 'Artwork'}">`;
+                    card.innerHTML = `<img src="${entry.preview}" alt="${entry.title || 'Artwork'}">`;
                     card.addEventListener('click', () => openLightbox(entry.src, entry.title));
                     gallery.appendChild(card);
                 });

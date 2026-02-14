@@ -2,7 +2,13 @@
   "appa_collage.png",
   "cactus.jpg",
   "face.jpg",
-  "egg.png",
+  {
+    "src": "egg.png",
+    "preview": "egg_preview.png"
+  },
   "people.png",
-  "appa.png"
+  {
+    "src": "appa.png",
+    "preview": "appa_preview.png"
+  }
 ]
