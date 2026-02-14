@@ -52,11 +52,12 @@
         /* Nav */
         .site-nav {
             width: 60%;
-            margin: 0 auto 20px auto;
-            padding: 0 0 10px 0;
+            margin: 0 auto 10px auto;
+            padding: 0 0 4px 0;
             font-family: "Manrope", sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             letter-spacing: 0.03em;
+            text-align: right;
         }
 
         .nav-link {
@@ -151,6 +152,35 @@
 
         .post a:hover {
             border-bottom-color: #1a8e18;
+        }
+
+        /* Script tables */
+        .post table.script-table {
+            width: 90%;
+            border-collapse: collapse;
+            font-family: "EB Garamond", serif;
+            font-size: inherit;
+            color: #444;
+            margin: 1.2em auto;
+            line-height: 1.75;
+        }
+
+        .post table.script-table td {
+            vertical-align: top;
+            padding: 0.1em 0;
+            font-family: inherit;
+        }
+
+        .post table.script-table .speaker {
+            width: 6rem;
+            font-weight: 600;
+            color: #666;
+            padding-right: 0.6rem;
+            white-space: nowrap;
+        }
+
+        .post table.script-table .line {
+            width: auto;
         }
 
         /* Blockquotes */
@@ -379,6 +409,8 @@
         <a href="/" class="nav-link">Home</a>
         <span class="nav-separator">/</span>
         <a href="/writing.html" class="nav-link active">Writing</a>
+        <span class="nav-separator">/</span>
+        <a href="/art.html" class="nav-link">Art</a>
     </nav>
 
     <article class="post" id="post-content">

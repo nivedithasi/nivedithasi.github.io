@@ -1,24 +1,22 @@
 [
     {
-        "title": "The Fridge",
-        "slug": "fridge"
+        "title": "Sensory Pride & Prejudice",
+        "description": "What costs decide what we know?",
+        "slug": "sensory-pride"
+    },
+    {
+        "title": "A Hope and a Prayer",
+        "description": "A diary entry in the era of Homo Extraordinare",
+        "slug": "homo-extraoirdinaire"
     },
     {
         "title": "Can Khan Academy Help Transform India's Public Schools?",
         "slug": "khan-academy",
-        "description": "India needs a Green Revolution in Education. Salman Khan could become the Norman Borlaug of our times."
+        "description": "India needs a Green Revolution in Education. Sal Khan could become the Norman Borlaug of our times."
     },
     {
         "title": "The Indian Ration Card",
         "slug": "ration-card",
         "description": "How the Ration Card accidentally became an identity document long after its original purpose faded."
-    },
-    {
-        "title": "Sensory Pride & Prejudice",
-        "slug": "sensory-pride"
-    },
-    {
-        "title": "A Hope and a Prayer",
-        "slug": "homo-extraoirdinaire"
     }
 ]

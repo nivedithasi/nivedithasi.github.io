@@ -65,13 +65,25 @@ perceptual and cognitive apparatus experiencing it.
 Those two men never met. But a great meeting of Indian and western epistemologies
 did occur when Albert Einstein and the Indian poet Rabindranath Tagore met in 1930. The
 exchange between the two Nobel laureates went something like this [5]:
-> Einstein: If there were no humans, would the Apollo Belvedere no longer be beautiful?
 
-> Tagore: No!
-
-> Einstein: I agree with this conception for beauty but not truth.
-
->Tagore: Why not? Truth is also realized through men. If there be some Truth which has no sensuous or rational relation to the human mind, it will ever remain as nothing so long as we remain human beings.
+<table class="script-table">
+  <tr>
+    <td class="speaker">Einstein</td>
+    <td class="line">If there were no humans, would the Apollo Belvedere no longer be beautiful?</td>
+  </tr>
+  <tr>
+    <td class="speaker">Tagore</td>
+    <td class="line">No!</td>
+  </tr>
+  <tr>
+    <td class="speaker">Einstein</td>
+    <td class="line">I agree with this conception for beauty but not truth.</td>
+  </tr>
+  <tr>
+    <td class="speaker">Tagore</td>
+    <td class="line">Why not? Truth is also realized through men. If there be some Truth which has no sensuous or rational relation to the human mind, it will ever remain as nothing so long as we remain human beings.</td>
+  </tr>
+</table>
 
 [citations]
 [1] Wehner, R. "Matched filters - neural models of the external world." J. Comp. Physiol. A 161, 1987, pp. 511–531.

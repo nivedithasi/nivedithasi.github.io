@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Niveditha S. Iyer">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+
+
+    <title>Art | Niveditha Iyer</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --content-size: 1rem;
+            --header-size: 1rem;
+            --section-gap: 0.5rem;
+            --nav-size: 0.85rem;
+        }
+
+        html,
+        body {
+            font-family: "Manrope", sans-serif;
+            height: 100%;
+            color: #333;
+            background-color: #fffdfc;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            padding: 40px 20px;
+            justify-content: flex-start;
+            line-height: 1.6;
+            opacity: 0;
+            animation: fadeInPage 0.6s ease forwards;
+        }
+
+        @keyframes fadeInPage {
+            to { opacity: 1; }
+        }
+
+        /* Nav */
+        .site-nav {
+            width: 60%;
+            margin: 0 auto 10px auto;
+            padding: 0 0 4px 0;
+            font-family: "Manrope", sans-serif;
+            font-size: var(--nav-size);
+            letter-spacing: 0.03em;
+            text-align: right;
+        }
+
+        .nav-link {
+            color: #999;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #333;
+        }
+
+        .nav-separator {
+            color: #ccc;
+            margin: 0 8px;
+        }
+
+        .art-header {
+            width: 60%;
+            margin: 0 auto 18px auto;
+            text-align: left;
+            font-size: var(--header-size);
+        }
+
+        .viewer {
+            width: 60%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f7f3ef;
+            border: 1px solid #eee7e1;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform 0.35s ease, filter 0.35s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.03);
+            filter: saturate(1.05);
+        }
+
+        .empty-state {
+            font-family: "EB Garamond", serif;
+            color: #666;
+            font-size: 1.05rem;
+            padding: 24px 0;
+        }
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 9, 8, 0.72);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 24px;
+        }
+
+        .lightbox.visible {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #111;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        .lightbox-content img {
+            display: block;
+            max-width: 90vw;
+            max-height: 85vh;
+            object-fit: contain;
+        }
+
+        .lightbox-caption {
+            font-family: "EB Garamond", serif;
+            font-size: 1rem;
+            color: #f5f1ec;
+            text-align: center;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 1024px) {
+            .site-nav,
+            .art-header,
+            .viewer {
+                width: 95%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .site-nav,
+            .art-header,
+            .viewer {
+                width: 100%;
+            }
+
+            .site-nav {
+                text-align: right;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="site-nav">
+        <a href="/" class="nav-link">Home</a>
+        <span class="nav-separator">/</span>
+        <a href="/writing.html" class="nav-link">Writing</a>
+        <span class="nav-separator">/</span>
+        <a href="/art.html" class="nav-link active">Art</a>
+    </nav>
+
+    <!-- <div class="art-header">
+        Art
+    </div> -->
+
+    <div class="viewer">
+        <div id="gallery" class="gallery"></div>
+        <div id="empty-state" class="empty-state" style="display: none;">
+            Add image filenames to `assets/art/index.json` to populate this gallery.
+        </div>
+    </div>
+
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="lightbox-wrap">
+            <div class="lightbox-content">
+                <img id="lightbox-image" alt="">
+            </div>
+            <div id="lightbox-caption" class="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <script>
+        const gallery = document.getElementById('gallery');
+        const emptyState = document.getElementById('empty-state');
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightbox-image');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+
+        function openLightbox(src, caption) {
+            lightboxImage.src = src;
+            lightboxImage.alt = caption || 'Artwork';
+            lightboxCaption.textContent = caption || '';
+            lightbox.classList.add('visible');
+            lightbox.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('visible');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.src = '';
+        }
+
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        window.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+
+        fetch('assets/art/index.json')
+            .then((res) => res.json())
+            .then((items) => {
+                const list = Array.isArray(items) ? items : [];
+                if (list.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+
+                list.forEach((item) => {
+                    const entry = typeof item === 'string'
+                        ? { src: `assets/art/${item}`, title: '' }
+                        : {
+                            src: item.src?.startsWith('assets/')
+                                ? item.src
+                                : `assets/art/${item.src}`,
+                            title: item.title || item.caption || ''
+                        };
+
+                    const card = document.createElement('div');
+                    card.className = 'gallery-item';
+                    card.innerHTML = `<img src="${entry.src}" alt="${entry.title || 'Artwork'}">`;
+                    card.addEventListener('click', () => openLightbox(entry.src, entry.title));
+                    gallery.appendChild(card);
+                });
+            })
+            .catch(() => {
+                emptyState.style.display = 'block';
+            });
+    </script>
+</body>
+
+</html>

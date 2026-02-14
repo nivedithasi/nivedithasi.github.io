@@ -1,5 +1,5 @@
 # Can Khan Academy Transform India's Public Schools?
-## Seventy years ago, the hunger crisis in India looked as hopeless as public school education does now. Could Kham Academy achive the same success for education as the Green Revolution did for local agriculture?
+## Seventy years ago, the hunger crisis in India looked as hopeless as public school education does now. Could Kha Academy achive the same success for education as the Green Revolution did for local agriculture?
 
 
 {dc}During my childhood years, my father was a volunteer teacher at a government-run school near our apartment in Bangalore. I would plead with him to take me to his school. He never did because the classrooms were already overcrowded. He would return home hoarse after hours of trying to make himself heard, above the din of the traffic outside, to a class of sixty plus kids. When I recently asked him about his experience, he shrugged his shoulders, saying, "I don't think they learnt anything from me."
