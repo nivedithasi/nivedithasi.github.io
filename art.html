@@ -178,7 +178,8 @@
         @media (max-width: 1024px) {
             .site-nav,
             .art-header,
-            .viewer {
+            .viewer,
+            .site-footer {
                 width: 95%;
             }
         }
@@ -186,13 +187,25 @@
         @media (max-width: 768px) {
             .site-nav,
             .art-header,
-            .viewer {
+            .viewer,
+            .site-footer {
                 width: 100%;
             }
 
             .site-nav {
                 text-align: right;
             }
+        }
+
+        .site-footer {
+            width: 60%;
+            margin: 2rem auto 2rem;
+            text-align: right;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #999;
         }
     </style>
 </head>
@@ -215,6 +228,10 @@
         <div id="empty-state" class="empty-state" style="display: none;">
             Add image filenames to `assets/art/index.json` to populate this gallery.
         </div>
+    </div>
+
+    <div class="site-footer">
+        <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
     </div>
 
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">

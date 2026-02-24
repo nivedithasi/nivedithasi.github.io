@@ -158,7 +158,8 @@
         @media (max-width: 768px) {
             .site-nav,
             .writing-header,
-            .posts-container {
+            .posts-container,
+            .site-footer {
                 width: 100%;
             }
         }
@@ -166,9 +167,21 @@
         @media (max-width: 480px) {
             .site-nav,
             .writing-header,
-            .posts-container {
+            .posts-container,
+            .site-footer {
                 width: 100%;
             }
+        }
+
+        .site-footer {
+            width: 60%;
+            margin: 2rem auto 2rem;
+            text-align: right;
+        }
+
+        .footer-copyright {
+            font-size: 0.85rem;
+            color: #999;
         }
     </style>
 </head>
@@ -187,6 +200,10 @@
     </div> -->
 
     <div class="posts-container" id="posts-container">
+    </div>
+
+    <div class="site-footer">
+        <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
     </div>
 
     <script>
