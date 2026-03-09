@@ -18,5 +18,15 @@
         "title": "The Indian Ration Card",
         "slug": "ration-card",
         "description": "How the Ration Card accidentally became an identity document long after its original purpose faded."
+    },
+    {
+        "title": "Columbia and the Cost of Rigid Organizational Structures",
+        "description": "How rigid communication channels led to the Columbia Space shuttle disaster",
+        "slug": "columbia"
+    },
+    {
+        "title": "The Red Barn",
+        "description": "A brief history of humans and horses",
+        "slug":"red-barn"
     }
 ]

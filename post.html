@@ -245,8 +245,20 @@
             margin: 1em 0 1em 1.5em;
         }
 
+        /* Make citations list wider */
+        .post h4 + ol {
+            width: 120%;
+            margin-left: -10%;
+        }
+
         .post li {
             margin-bottom: 0.4em;
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .post li a {
+            word-break: break-all;
         }
 
         /* Images */
@@ -312,6 +324,17 @@
 
         .cite-tooltip.visible {
             opacity: 1;
+        }
+
+        .cite-tooltip a {
+            color: #1a8e18;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s ease;
+        }
+
+        .cite-tooltip a:hover {
+            border-bottom-color: #1a8e18;
         }
 
         /* Horizontal rules */
@@ -513,12 +536,23 @@
             var tooltip = document.createElement('div');
             tooltip.className = 'cite-tooltip';
             document.body.appendChild(tooltip);
+            var isPinned = false;
 
             function showAt(ref) {
                 var num = parseInt(ref.getAttribute('data-cite'));
                 if (!citeList[num]) return;
 
-                tooltip.textContent = citeList[num];
+                var citationText = citeList[num];
+                // Extract URLs (https:// or http://)
+                var urlMatch = citationText.match(/(https?:\/\/[^\s]+)/);
+                var url = urlMatch ? urlMatch[1] : null;
+
+                // Remove URL from display text
+                var displayText = citationText.replace(/(https?:\/\/[^\s]+)/g, '').trim();
+
+                var html = marked.parse(displayText);
+
+                tooltip.innerHTML = html;
                 // Position off-screen to measure
                 tooltip.style.left = '-9999px';
                 tooltip.style.top = '-9999px';
@@ -540,29 +574,49 @@
 
             function hide() {
                 tooltip.classList.remove('visible');
+                isPinned = false;
             }
 
             // Hover
             document.addEventListener('mouseover', function(e) {
+                if (isPinned) return;
                 var ref = e.target.closest('.cite-ref');
                 if (ref) showAt(ref);
             });
             document.addEventListener('mouseout', function(e) {
+                if (isPinned) return;
                 var ref = e.target.closest('.cite-ref');
                 if (ref) hide();
             });
 
-            // Tap for mobile
+            // Click to navigate to link or show tooltip
             document.addEventListener('click', function(e) {
                 var ref = e.target.closest('.cite-ref');
+                var link = e.target.closest('a');
+
                 if (ref) {
                     e.preventDefault();
-                    if (tooltip.classList.contains('visible')) {
-                        hide();
+                    var num = parseInt(ref.getAttribute('data-cite'));
+                    var citationText = citeList[num];
+
+                    // Check if there's a URL in the citation
+                    var urlMatch = citationText.match(/(https?:\/\/[^\s]+)/);
+
+                    if (urlMatch && urlMatch[1]) {
+                        // Open the link directly
+                        window.open(urlMatch[1], '_blank');
                     } else {
-                        showAt(ref);
+                        // Show tooltip if no link
+                        if (isPinned) {
+                            hide();
+                        } else {
+                            showAt(ref);
+                            isPinned = true;
+                        }
                     }
-                } else {
+                } else if (link && tooltip.contains(link)) {
+                    // Don't prevent default - let link work
+                } else if (!tooltip.contains(e.target)) {
                     hide();
                 }
             });

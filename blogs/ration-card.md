@@ -27,6 +27,6 @@ The ration card arose out of a colonial need to maintain control without stoking
 [5] Singh, Hemant. "Census 2011: Literacy Rate and Sex Ratio in India Since 1901 to 2011." Jagranjosh.Com, 17 Oct. 2016, www.jagranjosh.com/general-knowledge/census-2011-literacy-rate-and-sex-ratio-in-india-since-1901-to-2011-1476359944-1.
 [6] Gulati, Leela. "Rationing in a Peri-Urban Community, Case Study of a Squatter Habitat." Economic & Political Weekly, 12 (2), 1977, pp. 501-506.
 [7] Delhi High Court, Ashok Kumar vs DDA, 10 August 2007, https://indiankanoon.org/doc/936272/. Accessed 12 Feb. 2021.
-[8] Sharma, Harikishan. "Explained: What Is the 'One Nation, One Ration Card' System?" The Indian Express, 16 May 2020, indianexpress.com/article/explained/one-nation-one-ration-card-system-explained-6410179.
+[8] Sharma, Harikishan. "Explained: What Is the 'One Nation, One Ration Card' System?" The Indian Express, 16 May 2020, https://indianexpress.com/article/explained/one-nation-one-ration-card-system-explained-6410179.
 
 
