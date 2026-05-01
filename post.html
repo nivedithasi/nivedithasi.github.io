@@ -120,10 +120,31 @@
             font-size: var(--content-size);
             color: #666;
             font-weight: 400;
-            font-style: italic;
-            line-height: 1.4;
-            margin-top: 0;
-            margin-bottom: 24px;
+            font-style: normal;
+            line-height: 1.6;
+            margin-top: 28px;
+            margin-bottom: 0;
+        }
+
+        .post h2::before {
+            content: "✦  ·  ✦  ·  ✦";
+            display: block;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 28px;
+        }
+
+        .post h2::after {
+            content: "✦  ·  ✦  ·  ✦";
+            display: block;
+            text-align: center;
+            color: #ccc;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            margin-top: 28px;
+            margin-bottom: 28px;
         }
 
         .post h3 {
@@ -337,6 +358,16 @@
             border-bottom-color: #1a8e18;
         }
 
+        /* Section separators */
+        .section-sep {
+            text-align: center;
+            color: #ccc;
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            margin: 2em 0;
+            font-family: "Manrope", sans-serif;
+        }
+
         /* Horizontal rules */
         .post hr {
             border: none;
@@ -510,6 +541,16 @@
                     if (p.textContent.indexOf('{dc}') === 0) {
                         p.innerHTML = p.innerHTML.replace('{dc}', '');
                         p.classList.add('dropcap');
+                    }
+                });
+
+                // Process {sep} section separator markers
+                postEl.querySelectorAll('p').forEach(function(p) {
+                    if (p.textContent.trim() === '{sep}') {
+                        var sep = document.createElement('div');
+                        sep.className = 'section-sep';
+                        sep.textContent = '✦  ·  ✦';
+                        p.parentNode.replaceChild(sep, p);
                     }
                 });
 
