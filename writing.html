@@ -10,6 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/theme.css">
+
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 
     <title>Writing | Niveditha Iyer</title>
 
@@ -32,8 +42,8 @@
         body {
             font-family: "Manrope", sans-serif;
             height: 100%;
-            color: #333;
-            background-color: #fffdfc;
+            color: var(--color-text-strong);
+            background-color: var(--color-page-bg);
         }
 
         body {
@@ -64,19 +74,34 @@
         }
 
         .nav-link {
-            color: #999;
+            color: var(--color-text-muted);
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: #333;
+            color: var(--color-text-strong);
         }
 
         .nav-separator {
-            color: #ccc;
+            color: var(--color-nav-separator);
             margin: 0 8px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 0;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font: inherit;
+            letter-spacing: inherit;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--color-text-strong);
         }
 
         /* Writing header */
@@ -88,7 +113,7 @@
 
         .section-title {
             font-size: var(--header-size);
-            color: #000000;
+            color: var(--color-text-heading);
             margin-bottom: 10px;
             font-weight: 400;
             letter-spacing: 0.02em;
@@ -98,13 +123,13 @@
         .writing-header h3 {
             font-size: var(--main-header-size);
             font-family: "Manrope", sans-serif;
-            color: #333;
+            color: var(--color-text-strong);
             margin-bottom: 4px;
         }
 
         .writing-header p {
             font-size: var(--content-size);
-            color: #777;
+            color: var(--color-text-subtle);
             font-family: "EB Garamond", serif;
         }
 
@@ -120,7 +145,7 @@
             display: block;
             text-decoration: none;
             padding: 24px 0;
-            border-bottom: 1px solid #f0eeec;
+            border-bottom: 1px solid var(--color-border-soft);
         }
 
         .post-card-arrow {
@@ -130,11 +155,12 @@
             opacity: 0;
             transform: translateX(-4px);
             transition: opacity 0.2s ease, transform 0.2s ease;
-            color: #1a8e18;
+            color: var(--color-accent);
             font-size: 1rem;
         }
 
-        .post-card:hover .post-card-arrow {
+        .post-card:hover .post-card-arrow,
+        .post-card:focus .post-card-arrow {
             opacity: 1;
             transform: translateX(0);
         }
@@ -142,7 +168,7 @@
         .post-card-description {
             font-family: "EB Garamond", serif;
             font-size: var(--content-size);
-            color: #555;
+            color: var(--color-text-body);
             line-height: 1.6;
         }
 
@@ -181,37 +207,82 @@
 
         .footer-copyright {
             font-size: 0.85rem;
-            color: #999;
+            color: var(--color-text-muted);
         }
+
     </style>
 </head>
 
 <body>
-    <nav class="site-nav">
-        <a href="/" class="nav-link">Home</a>
-        <span class="nav-separator">/</span>
-        <a href="/writing.html" class="nav-link active">Writing</a>
-        <span class="nav-separator">/</span>
-        <a href="/art.html" class="nav-link">Art</a>
-    </nav>
+    <div class="site-shell">
+        <aside class="drawing-panel writing-drawing-panel" aria-label="Page illustration">
+            <div class="drawing-stack writing-drawing-stack">
+                <img class="drawing-goose writing-moving-goose" src="assets/geese/transparent/read.png" alt="">
+            </div>
+        </aside>
 
-    <!-- <div class="writing-header">
-        <h3>Writing</h3>
-    </div> -->
+        <main class="site-content">
+            <nav class="site-nav">
+                <a href="/" class="nav-link">Home</a>
+                <span class="nav-separator">/</span>
+                <a href="/writing.html" class="nav-link active">Writing</a>
+                <span class="nav-separator">/</span>
+                <a href="/art.html" class="nav-link">Art</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
+                    <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+                    <span class="theme-toggle-label">Toggle color theme</span>
+                </button>
+            </nav>
 
-    <div class="posts-container" id="posts-container">
-    </div>
+            <!-- <div class="writing-header">
+                <h3>Writing</h3>
+            </div> -->
 
-    <div class="site-footer">
-        <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
+            <div class="posts-container" id="posts-container">
+            </div>
+
+            <div class="site-footer">
+                <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
+            </div>
+        </main>
     </div>
 
     <script>
+        function setupThemeToggle() {
+            const button = document.querySelector('.theme-toggle');
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function effectiveTheme() {
+                return document.documentElement.getAttribute('data-theme') || 'light';
+            }
+
+            function updateButton() {
+                const isDark = effectiveTheme() === 'dark';
+                button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(isDark));
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', nextTheme);
+                localStorage.setItem('theme', nextTheme);
+                updateButton();
+            });
+
+            media.addEventListener('change', () => {
+                if (!localStorage.getItem('theme')) {
+                    document.documentElement.setAttribute('data-theme', media.matches ? 'dark' : 'light');
+                    updateButton();
+                }
+            });
+
+            updateButton();
+        }
+
         async function loadPosts() {
             const response = await fetch('/blogs/index.json');
             const posts = await response.json();
-
-            posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
             const container = document.getElementById('posts-container');
 
@@ -219,14 +290,16 @@
                 const card = document.createElement('a');
                 card.href = '/post.html?slug=' + encodeURIComponent(post.slug);
                 card.className = 'post-card';
+                const title = post.menuTitle ?? post.title;
 
                 card.innerHTML =
-                    '<div class="section-title"><span class="post-card-arrow">&rarr;</span>' + escapeHtml(post.title) + '</div>' +
-                    '<div class="post-card-description">' + escapeHtml(post.description ?? '') + '</div>';
+                    '<div class="section-title"><span class="post-card-arrow">&rarr;</span>' + escapeHtml(title) + '</div>' +
+                    (post.description ? '<div class="post-card-description">' + escapeHtml(post.description) + '</div>' : '');
 
                 container.appendChild(card);
             });
 
+            setupWritingGoose();
         }
 
         function escapeHtml(str) {
@@ -235,7 +308,37 @@
             return div.innerHTML;
         }
 
+        setupThemeToggle();
         loadPosts();
+
+        function setupWritingGoose() {
+            const panel = document.querySelector('.writing-drawing-panel');
+            const container = document.getElementById('posts-container');
+            const cards = Array.from(document.querySelectorAll('.post-card'));
+            if (!panel || cards.length === 0) return;
+
+            function moveTo(card) {
+                const title = card.querySelector('.section-title');
+                if (!title) return;
+
+                const titleRect = title.getBoundingClientRect();
+                const panelRect = panel.getBoundingClientRect();
+                const y = titleRect.top + titleRect.height / 2 - panelRect.top;
+                panel.style.setProperty('--writing-goose-y', y + 'px');
+            }
+
+            cards.forEach((card) => {
+                card.addEventListener('mouseenter', () => moveTo(card));
+                card.addEventListener('focus', () => moveTo(card));
+            });
+
+            if (container) {
+                container.addEventListener('mouseleave', () => moveTo(cards[0]));
+            }
+
+            window.addEventListener('resize', () => moveTo(cards[0]));
+            requestAnimationFrame(() => moveTo(cards[0]));
+        }
     </script>
 </body>
 

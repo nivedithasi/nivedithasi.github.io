@@ -10,7 +10,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/styles/theme.css">
 
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const theme = savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : systemTheme;
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
 
     <title>Art | Niveditha Iyer</title>
 
@@ -32,8 +41,8 @@
         body {
             font-family: "Manrope", sans-serif;
             height: 100%;
-            color: #333;
-            background-color: #fffdfc;
+            color: var(--color-text-strong);
+            background-color: var(--color-page-bg);
         }
 
         body {
@@ -63,19 +72,34 @@
         }
 
         .nav-link {
-            color: #999;
+            color: var(--color-text-muted);
             text-decoration: none;
             transition: color 0.2s ease;
         }
 
         .nav-link:hover,
         .nav-link.active {
-            color: #333;
+            color: var(--color-text-strong);
         }
 
         .nav-separator {
-            color: #ccc;
+            color: var(--color-nav-separator);
             margin: 0 8px;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 0;
+            color: var(--color-text-muted);
+            cursor: pointer;
+            font: inherit;
+            letter-spacing: inherit;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--color-text-strong);
         }
 
         .art-header {
@@ -104,8 +128,8 @@
             position: relative;
             border-radius: 10px;
             overflow: hidden;
-            background: #f7f3ef;
-            border: 1px solid #eee7e1;
+            background: var(--color-card-bg);
+            border: 1px solid var(--color-border-card);
             cursor: pointer;
         }
 
@@ -124,7 +148,7 @@
 
         .empty-state {
             font-family: "EB Garamond", serif;
-            color: #666;
+            color: var(--color-text-secondary);
             font-size: 1.05rem;
             padding: 24px 0;
         }
@@ -132,7 +156,7 @@
         .lightbox {
             position: fixed;
             inset: 0;
-            background: rgba(10, 9, 8, 0.72);
+            background: var(--color-lightbox-bg);
             display: none;
             align-items: center;
             justify-content: center;
@@ -149,8 +173,8 @@
             max-height: 85vh;
             border-radius: 12px;
             overflow: hidden;
-            background: #111;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+            background: var(--color-lightbox-panel);
+            box-shadow: 0 20px 60px var(--color-shadow-lightbox);
         }
 
         .lightbox-content img {
@@ -170,7 +194,7 @@
         .lightbox-caption {
             font-family: "EB Garamond", serif;
             font-size: 1rem;
-            color: #f5f1ec;
+            color: var(--color-lightbox-caption);
             text-align: center;
             margin-top: 12px;
         }
@@ -205,33 +229,49 @@
 
         .footer-copyright {
             font-size: 0.85rem;
-            color: #999;
+            color: var(--color-text-muted);
         }
+
     </style>
 </head>
 
 <body>
-    <nav class="site-nav">
-        <a href="/" class="nav-link">Home</a>
-        <span class="nav-separator">/</span>
-        <a href="/writing.html" class="nav-link">Writing</a>
-        <span class="nav-separator">/</span>
-        <a href="/art.html" class="nav-link active">Art</a>
-    </nav>
+    <div class="site-shell">
+        <aside class="drawing-panel" aria-label="Page illustration">
+            <div class="drawing-stack">
+                <img class="drawing-goose drawing-goose-large" src="assets/geese/transparent/paint.png" alt="">
+            </div>
+        </aside>
 
-    <!-- <div class="art-header">
-        Art
-    </div> -->
+        <main class="site-content">
+            <nav class="site-nav">
+                <a href="/" class="nav-link">Home</a>
+                <span class="nav-separator">/</span>
+                <a href="/writing.html" class="nav-link">Writing</a>
+                <span class="nav-separator">/</span>
+                <a href="/art.html" class="nav-link active">Art</a>
+                <button class="theme-toggle" type="button" aria-label="Toggle dark mode">
+                    <span class="theme-toggle-icon theme-toggle-sun" aria-hidden="true">☀</span>
+                    <span class="theme-toggle-icon theme-toggle-moon" aria-hidden="true">☾</span>
+                    <span class="theme-toggle-label">Toggle color theme</span>
+                </button>
+            </nav>
 
-    <div class="viewer">
-        <div id="gallery" class="gallery"></div>
-        <div id="empty-state" class="empty-state" style="display: none;">
-            Add image filenames to `assets/art/index.json` to populate this gallery.
-        </div>
-    </div>
+            <!-- <div class="art-header">
+                Art
+            </div> -->
 
-    <div class="site-footer">
-        <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
+            <div class="viewer">
+                <div id="gallery" class="gallery"></div>
+                <div id="empty-state" class="empty-state" style="display: none;">
+                    Add image filenames to `assets/art/index.json` to populate this gallery.
+                </div>
+            </div>
+
+            <div class="site-footer">
+                <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
+            </div>
+        </main>
     </div>
 
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
@@ -244,6 +284,37 @@
     </div>
 
     <script>
+        function setupThemeToggle() {
+            const button = document.querySelector('.theme-toggle');
+            const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+            function effectiveTheme() {
+                return document.documentElement.getAttribute('data-theme') || 'light';
+            }
+
+            function updateButton() {
+                const isDark = effectiveTheme() === 'dark';
+                button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+                button.setAttribute('aria-pressed', String(isDark));
+            }
+
+            button.addEventListener('click', () => {
+                const nextTheme = effectiveTheme() === 'dark' ? 'light' : 'dark';
+                document.documentElement.setAttribute('data-theme', nextTheme);
+                localStorage.setItem('theme', nextTheme);
+                updateButton();
+            });
+
+            media.addEventListener('change', () => {
+                if (!localStorage.getItem('theme')) {
+                    document.documentElement.setAttribute('data-theme', media.matches ? 'dark' : 'light');
+                    updateButton();
+                }
+            });
+
+            updateButton();
+        }
+
         const gallery = document.getElementById('gallery');
         const emptyState = document.getElementById('empty-state');
         const lightbox = document.getElementById('lightbox');
@@ -308,6 +379,8 @@
             zoomLevel = Math.min(maxZoom, Math.max(minZoom, zoomLevel - delta * step));
             applyZoom();
         }, { passive: false });
+
+        setupThemeToggle();
 
         fetch('assets/art/index.json')
             .then((res) => res.json())
