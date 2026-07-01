@@ -22,7 +22,7 @@
     </script>
 
     <!-- Markdown rendering -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
 
     <!-- Code syntax highlighting -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
@@ -148,28 +148,24 @@
             font-style: normal;
             line-height: 1.6;
             margin-top: 28px;
-            margin-bottom: 0;
+            margin-bottom: 12px;
         }
 
         .post h2::before {
-            content: "✦  ·  ✦  ·  ✦";
-            display: block;
-            text-align: center;
-            color: var(--color-nav-separator);
-            font-size: 0.75rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 28px;
+            content: none;
         }
 
         .post h2::after {
-            content: "✦  ·  ✦  ·  ✦";
-            display: block;
+            content: none;
+        }
+
+        .section-sep-lg {
             text-align: center;
             color: var(--color-nav-separator);
             font-size: 0.75rem;
             letter-spacing: 0.3em;
-            margin-top: 28px;
-            margin-bottom: 28px;
+            margin: 2em 0;
+            font-family: "Manrope", sans-serif;
         }
 
         .post h3 {
@@ -463,6 +459,7 @@
         }
 
         .footer-copyright {
+            font-family: "EB Garamond", serif;
             font-size: 0.85rem;
             color: var(--color-text-muted);
             margin-top: 12px;
@@ -516,12 +513,6 @@
 
 <body>
     <div class="site-shell">
-        <aside class="drawing-panel" aria-label="Page illustration">
-            <div class="drawing-stack">
-                <img class="drawing-goose drawing-goose-tiny" src="assets/geese/transparent/read.png" alt="">
-            </div>
-        </aside>
-
         <main class="site-content">
             <nav class="site-nav">
                 <a href="/" class="nav-link">Home</a>
@@ -579,12 +570,128 @@
             updateButton();
         }
 
+        function setMessage(id, message) {
+            var el = document.getElementById(id);
+            el.textContent = '';
+
+            var p = document.createElement('p');
+            p.textContent = message;
+            el.appendChild(p);
+        }
+
+        function isSafeUrl(value, allowMailto) {
+            try {
+                var url = new URL(value, window.location.origin);
+                return url.protocol === 'http:' ||
+                    url.protocol === 'https:' ||
+                    (allowMailto && url.protocol === 'mailto:');
+            } catch (err) {
+                return false;
+            }
+        }
+
+        function allowedClassList(tagName, classValue) {
+            return classValue
+                .split(/\s+/)
+                .filter(function(className) {
+                    if (!className) return false;
+                    if (tagName === 'sup') return className === 'cite-ref' || className === 'cite-sep';
+                    if (tagName === 'code') return className.indexOf('language-') === 0 || className.indexOf('hljs') === 0;
+                    if (tagName === 'span') return className.indexOf('hljs') === 0;
+                    return false;
+                })
+                .join(' ');
+        }
+
+        function sanitizeAllowedElement(el) {
+            var tagName = el.tagName.toLowerCase();
+
+            Array.from(el.attributes).forEach(function(attr) {
+                var name = attr.name.toLowerCase();
+                var value = attr.value;
+
+                if (name.indexOf('on') === 0 || name === 'style') {
+                    el.removeAttribute(attr.name);
+                    return;
+                }
+
+                if (tagName === 'a' && name === 'href') {
+                    if (isSafeUrl(value, true)) {
+                        el.setAttribute('rel', 'noopener noreferrer');
+                    } else {
+                        el.removeAttribute(attr.name);
+                    }
+                    return;
+                }
+
+                if (tagName === 'img' && name === 'src') {
+                    if (!isSafeUrl(value, false)) el.removeAttribute(attr.name);
+                    return;
+                }
+
+                if ((tagName === 'a' || tagName === 'img') && (name === 'title' || name === 'alt')) return;
+
+                if ((tagName === 'code' || tagName === 'span' || tagName === 'sup') && name === 'class') {
+                    var cleanClasses = allowedClassList(tagName, value);
+                    if (cleanClasses) {
+                        el.setAttribute('class', cleanClasses);
+                    } else {
+                        el.removeAttribute(attr.name);
+                    }
+                    return;
+                }
+
+                if (tagName === 'sup' && name === 'data-cite' && /^\d+$/.test(value)) return;
+
+                el.removeAttribute(attr.name);
+            });
+        }
+
+        function sanitizeHtml(html) {
+            var template = document.createElement('template');
+            var allowedTags = new Set([
+                'a', 'blockquote', 'br', 'code', 'del', 'em', 'h1', 'h2', 'h3',
+                'h4', 'h5', 'h6', 'hr', 'img', 'li', 'ol', 'p', 'pre', 'span',
+                'strong', 'sup', 'table', 'tbody', 'td', 'th', 'thead', 'tr', 'ul'
+            ]);
+            var blockedTags = new Set([
+                'script', 'style', 'iframe', 'object', 'embed', 'link', 'meta',
+                'form', 'input', 'button', 'select', 'textarea'
+            ]);
+
+            template.innerHTML = html;
+
+            function cleanNode(node) {
+                if (node.nodeType !== Node.ELEMENT_NODE) return;
+
+                var tagName = node.tagName.toLowerCase();
+                if (blockedTags.has(tagName)) {
+                    node.remove();
+                    return;
+                }
+
+                Array.from(node.childNodes).forEach(cleanNode);
+
+                if (!allowedTags.has(tagName)) {
+                    var parent = node.parentNode;
+                    while (node.firstChild) parent.insertBefore(node.firstChild, node);
+                    node.remove();
+                    return;
+                }
+
+                sanitizeAllowedElement(node);
+            }
+
+            Array.from(template.content.childNodes).forEach(cleanNode);
+            return template.innerHTML;
+        }
+
         async function loadPost() {
             var params = new URLSearchParams(window.location.search);
             var slug = params.get('slug');
 
             if (!slug) {
-                document.getElementById('post-content').innerHTML = '<p>Post not found.</p>';
+                setMessage('post-content', 'Post not found.');
                 return;
             }
 
@@ -635,12 +742,18 @@
                 });
 
                 var postEl = document.getElementById('post-content');
-                postEl.innerHTML = marked.parse(markdownBody);
+                postEl.innerHTML = sanitizeHtml(marked.parse(markdownBody));
 
                 postEl.querySelectorAll('p').forEach(function(p) {
                     if (p.textContent.indexOf('{dc}') === 0) {
                         p.innerHTML = p.innerHTML.replace('{dc}', '');
                         p.classList.add('dropcap');
+                        if (p.previousElementSibling && p.previousElementSibling.tagName === 'H2') {
+                            var introSep = document.createElement('div');
+                            introSep.className = 'section-sep-lg';
+                            introSep.textContent = '✦  ·  ✦  ·  ✦';
+                            p.parentNode.insertBefore(introSep, p);
+                        }
                     }
                 });
 
@@ -663,8 +776,7 @@
                 });
 
             } catch (err) {
-                document.getElementById('post-content').innerHTML =
-                    '<p>Sorry, this post could not be loaded.</p>';
+                setMessage('post-content', 'Sorry, this post could not be loaded.');
                 document.getElementById('post-footer').classList.add('visible');
             }
         }
@@ -681,7 +793,7 @@
 
                 var citationText = citeList[num];
                 var displayText = citationText.replace(/(https?:\/\/[^\s]+)/g, '').trim();
-                var html = marked.parse(displayText);
+                var html = sanitizeHtml(marked.parse(displayText));
 
                 tooltip.innerHTML = html;
                 tooltip.style.left = '-9999px';
@@ -730,7 +842,7 @@
                     var urlMatch = citationText.match(/(https?:\/\/[^\s]+)/);
 
                     if (urlMatch && urlMatch[1]) {
-                        window.open(urlMatch[1], '_blank');
+                        window.open(urlMatch[1], '_blank', 'noopener,noreferrer');
                     } else {
                         if (isPinned) {
                             hide();
@@ -747,8 +859,9 @@
         }
 
         setupThemeToggle();
-        loadPost();
+        window.siteVisitTrackingReady = loadPost();
     </script>
+    <script src="/assets/scripts/visit-tracker.js" defer></script>
 </body>
 
 </html>

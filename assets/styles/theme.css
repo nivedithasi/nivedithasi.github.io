@@ -128,7 +128,7 @@ html[data-theme="light"] {
 }
 
 .drawing-goose-large {
-    width: min(100%, 210px);
+    width: min(100%, 145px);
 }
 
 .home-drawing-stack {
@@ -146,12 +146,12 @@ html[data-theme="light"] {
 }
 
 .drawing-goose-spin:hover {
-    animation: gooseSpin 0.8s ease-in-out;
+    animation: gooseSpin 1.6s ease-in-out;
 }
 
 @keyframes gooseSpin {
     to {
-        transform: rotate(360deg);
+        transform: rotate(-360deg);
     }
 }
 
@@ -241,10 +241,7 @@ body .site-shell .theme-toggle-label {
     }
 
     .drawing-panel {
-        min-height: 0;
-        position: static;
-        padding: 0;
-        margin-bottom: 18px;
+        display: none;
     }
 
     .drawing-stack {

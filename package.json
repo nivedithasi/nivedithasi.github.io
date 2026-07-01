@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "dev": "browser-sync start --server --files \"*.html, blogs/*.md, blogs/*.json, assets/**/*\" --port 8000"
+  },
+  "devDependencies": {
+    "browser-sync": "^3.0.3"
+  }
+}

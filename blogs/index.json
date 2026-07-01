@@ -5,33 +5,41 @@
         "slug": "negative_result"
     },
     {
-        "title": "Sensory Pride & Prejudice",
-        "description": "What costs decide what we know?",
-        "slug": "sensory-pride"
-    },
-    {
         "title": "A Hope and a Prayer",
-        "description": "A diary entry in the era of Homo Extraordinare",
+        "menuTitle": "A diary entry in the era of Homo Extraordinare",
+        "description": "",
         "slug": "homo-extraoirdinaire"
     },
     {
         "title": "Can Khan Academy Help Transform India's Public Schools?",
         "slug": "khan-academy",
-        "description": "India needs a Green Revolution in Education. Sal Khan could become the Norman Borlaug of our times."
+        "description": ""
     },
     {
         "title": "The Indian Ration Card",
         "slug": "ration-card",
-        "description": "How the Ration Card accidentally became an identity document long after its original purpose faded."
+        "description": ""
     },
     {
         "title": "Columbia and the Cost of Rigid Organizational Structures",
-        "description": "How rigid communication channels led to the Columbia Space shuttle disaster",
+        "description": "",
         "slug": "columbia"
     },
     {
+        "title": "Sensory Pride & Prejudice",
+        "description": "",
+        "slug": "sensory-pride"
+    },
+    {
+        "title": "The Rhetoric of Dharavi: Parallels Between Slum Tourism and Wildlife Tourism",
+        "menuTitle": "The Rhetoric of Dharavi",
+        "description": "",
+        "slug": "dharavi"
+    },
+    {
         "title": "The Red Barn",
-        "description": "A brief history of humans and horses",
+        "menuTitle": "The Red Barn, Humans and Horses",
+        "description": "",
         "slug":"red-barn"
     }
 ]

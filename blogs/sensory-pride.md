@@ -1,6 +1,6 @@
 # Sensory Pride & Prejudice
 
-{dc}It is a truism that wide realms of the world go undetected by any given creature simply
+It is a truism that wide realms of the world go undetected by any given creature simply
 because it lacks the requisite sensory apparatus. Evolution in humans, responding to the
 unrelenting demands of natural selection, did not confer many cool capabilites (being able
 to see ultraviolet and infrared light also ranks high on my coolness scale) because they

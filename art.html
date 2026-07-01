@@ -228,6 +228,7 @@
         }
 
         .footer-copyright {
+            font-family: "EB Garamond", serif;
             font-size: 0.85rem;
             color: var(--color-text-muted);
         }
@@ -380,6 +381,17 @@
             applyZoom();
         }, { passive: false });
 
+        function artAssetPath(value) {
+            if (typeof value !== 'string') return '';
+
+            const trimmed = value.trim();
+            if (!trimmed || trimmed.includes('..') || trimmed.startsWith('//') || /^[a-z][a-z0-9+.-]*:/i.test(trimmed)) {
+                return '';
+            }
+
+            return trimmed.startsWith('assets/') ? trimmed : `assets/art/${trimmed}`;
+        }
+
         setupThemeToggle();
 
         fetch('assets/art/index.json')
@@ -393,24 +405,23 @@
 
                 list.forEach((item) => {
                     const entry = typeof item === 'string'
-                        ? { src: `assets/art/${item}`, preview: `assets/art/${item}`, title: '' }
+                        ? { src: artAssetPath(item), preview: artAssetPath(item), title: '' }
                         : {
-                            src: item.src?.startsWith('assets/')
-                                ? item.src
-                                : `assets/art/${item.src}`,
+                            src: artAssetPath(item.src),
                             preview: item.preview
-                                ? (item.preview.startsWith('assets/')
-                                    ? item.preview
-                                    : `assets/art/${item.preview}`)
-                                : (item.src?.startsWith('assets/')
-                                    ? item.src
-                                    : `assets/art/${item.src}`),
+                                ? artAssetPath(item.preview)
+                                : artAssetPath(item.src),
                             title: item.title || item.caption || ''
                         };
 
+                    if (!entry.src || !entry.preview) return;
+
                     const card = document.createElement('div');
                     card.className = 'gallery-item';
-                    card.innerHTML = `<img src="${entry.preview}" alt="${entry.title || 'Artwork'}">`;
+                    const image = document.createElement('img');
+                    image.src = entry.preview;
+                    image.alt = entry.title || 'Artwork';
+                    card.appendChild(image);
                     card.addEventListener('click', () => openLightbox(entry.src, entry.title));
                     gallery.appendChild(card);
                 });
@@ -419,6 +430,7 @@
                 emptyState.style.display = 'block';
             });
     </script>
+    <script src="/assets/scripts/visit-tracker.js" defer></script>
 </body>
 
 </html>

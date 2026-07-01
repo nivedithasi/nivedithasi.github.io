@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/styles/theme.css">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.468.0"></script>
 
     <script>
         (function() {
@@ -118,6 +118,46 @@
         .header p {
             font-size: var(--content-size);
             color: var(--color-text-subtle);
+        }
+
+        .name-line {
+            align-items: center;
+            display: inline-flex;
+            gap: 0.42rem;
+        }
+
+        .name-goose {
+            display: block;
+            flex: 0 0 auto;
+            filter: var(--image-line-art-filter);
+            height: auto;
+            opacity: 0.72;
+            transform: rotate(-7deg);
+            transform-origin: 50% 55%;
+            transition: opacity 0.2s ease;
+            width: 2.25rem;
+            will-change: transform;
+        }
+
+        .name-line:hover .name-goose {
+            animation: nameGooseSpin 1.45s cubic-bezier(0.45, 0, 0.2, 1);
+            opacity: var(--image-line-art-opacity);
+        }
+
+        @keyframes nameGooseSpin {
+            from {
+                transform: rotate(-7deg);
+            }
+
+            to {
+                transform: rotate(-367deg);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .name-line:hover .name-goose {
+                animation: none;
+            }
         }
 
         .header-email {
@@ -227,6 +267,28 @@
             width: 100%;
             margin: 0;
             text-align: right;
+        }
+
+        .footer-email .footer-email-link {
+            align-items: center;
+            color: var(--color-text-body);
+            display: inline-flex;
+            gap: 0.4rem;
+            justify-content: flex-end;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-email .footer-email-link:hover {
+            color: var(--color-accent);
+        }
+
+        .footer-mail-icon {
+            color: currentColor;
+            flex: 0 0 auto;
+            height: 1rem;
+            stroke-width: 1.8;
+            width: 1rem;
         }
 
         .footer-copyright {
@@ -571,8 +633,8 @@
     <div class="site-shell">
         <aside class="drawing-panel" aria-label="Page illustration">
             <div class="drawing-stack home-drawing-stack">
-                <img class="drawing-goose home-cartwheel-goose drawing-goose-spin" src="assets/geese/transparent/cartwheel.png" alt="">
-                <img class="drawing-goose home-research-goose" src="assets/geese/transparent/study.png" alt="">
+                <!-- <img class="drawing-goose home-cartwheel-goose drawing-goose-spin" src="assets/geese/transparent/cartwheel.png" alt=""> -->
+                <!-- <img class="drawing-goose home-research-goose" src="assets/geese/transparent/study.png" alt=""> -->
             </div>
         </aside>
 
@@ -590,7 +652,10 @@
                 </button>
             </nav>
             <div class="header">
-                Niveditha S. Iyer
+                <span class="name-line">
+                    <span>Niveditha S. Iyer</span>
+                    <img class="name-goose" src="assets/geese/transparent/cartwheel.png" alt="">
+                </span>
                 <!-- <p>Stanford and Bangalore <span class="header-email"><a href="mailto:nivsiyer@cs.stanford.edu">📬</a></span></p> -->
             </div>
 
@@ -609,15 +674,15 @@
             <div class="research">
                 <h4 class="section-title">Research</h4>
                 <ul>
-                    <li> Transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute</a> (presented at <a href="https://sbi2.org/conference/" target="_blank">SBI^2</a>)<a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-                    <li> Self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> <a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-                    <li> Determining LLM abilities to reason about information sufficiency <a href="https://github.com/google/BIG-bench">BIG-bench</a><a href="https://arxiv.org/pdf/2206.04615" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a> </li>
-                    <li> Dendritic discrimination of temporal input sequences at the <a href=http://web.stanford.edu/group/brainsinsilicon/>Brains in Silicon Lab</a></li>
+                    <li> Transformer-based systems to find drug targets at the <a href="https://www.broadinstitute.org/">Broad Institute</a> (presented at <a href="https://sbi2.org/conference/" target="_blank" rel="noopener noreferrer">SBI^2</a>, <a href="https://www.biorxiv.org/content/10.1101/2024.06.08.598076v1" target="_blank" rel="noopener noreferrer">paper</a>)</li>
+                    <li> Self-supervised learning models to reduce reliance on labeled data at <a href="https://stanfordmlgroup.github.io/">Prof Andrew Ng's Lab </a> (<a href="https://www.medrxiv.org/content/10.1101/2022.11.19.22282519v1" target="_blank" rel="noopener noreferrer">paper</a>)</li>
+                    <li> Determining LLM abilities to reason about information sufficiency <a href="https://github.com/google/BIG-bench">BIG-bench</a> (<a href="https://arxiv.org/pdf/2206.04615" target="_blank" rel="noopener noreferrer">paper</a>)</li>
+                    <li> Dendritic discrimination of temporal input sequences at the <a href="https://web.stanford.edu/group/brainsinsilicon/" target="_blank" rel="noopener noreferrer">Brains in Silicon Lab</a></li>
                     <li> Research Minis
                         <ul>
-                            <li>Lyric Generators for Soundtracks (<a href="https://cs224n.stanford.edu/" target="_blank">CS224N</a> Best Project)<a href="assets/Ghostwriter_Paper.pdf" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-                            <li>Image "Uncrumplers" (<a href="https://cs231n.stanford.edu/" target="_blank">CS231N</a> Best Project)<a href="assets/Sixteen_Pixels.pdf" target="_blank" class="research-icon-link"><i data-lucide="file" class="research-icon"></i></a></li>
-                            <li>Quantifying Preference Pluralism (<a href="https://cs329h.stanford.edu/" target="_blank">CS329H</a> Outstanding Project)</li>
+                            <li>Lyric Generators for Soundtracks (<a href="https://cs224n.stanford.edu/" target="_blank" rel="noopener noreferrer">CS224N</a> Best Project, <a href="assets/Ghostwriter_Paper.pdf" target="_blank" rel="noopener noreferrer">paper</a>)</li>
+                            <li>Image "Uncrumplers" (<a href="https://cs231n.stanford.edu/" target="_blank" rel="noopener noreferrer">CS231N</a> Best Project, <a href="assets/Sixteen_Pixels.pdf" target="_blank" rel="noopener noreferrer">paper</a>)</li>
+                            <li>Quantifying Preference Pluralism (<a href="https://cs329h.stanford.edu/" target="_blank" rel="noopener noreferrer">CS329H</a> Outstanding Project)</li>
                         </ul>
                     </li>
                 </ul>
@@ -626,18 +691,17 @@
             <div class="teaching">
                 <h4 class="section-title">Teaching</h4>
                 <div class="teaching-grid">
-                    <div class="teaching-item">Programming FPGAs (<a href="https://explorecourses.stanford.edu/search?view=catalog&filter-coursestatus-Active=on&q=EE%20108:%20Digital%20System%20Design&academicYear=20142015" target="_blank">EE108</a>)</div>
-                    <div class="teaching-item">Machine Learning (<a href="https://cs229.stanford.edu/" target="_blank">CS229</a>)</div>
-                    <div class="teaching-item">Operating Systems (<a href="https://cs111.stanford.edu/" target="_blank">CS111</a>)</div>
-                    <div class="teaching-item">Intro Programming (<a href="https://cs106a.stanford.edu/" target="_blank">CS106A</a>)</div>
-                    <div class="teaching-item">Databases (<a href="https://cs145.stanford.edu/" target="_blank">CS145</a>)</div>
-                    <div class="teaching-item"><a href="https://www.youtube.com/@nivedithasiyer" target="_blank">YouTube</a> videos!</div>
+                    <div class="teaching-item">Programming FPGAs (<a href="https://explorecourses.stanford.edu/search?view=catalog&filter-coursestatus-Active=on&q=EE%20108:%20Digital%20System%20Design&academicYear=20142015" target="_blank" rel="noopener noreferrer">EE108</a>)</div>
+                    <div class="teaching-item">Machine Learning (<a href="https://cs229.stanford.edu/" target="_blank" rel="noopener noreferrer">CS229</a>)</div>
+                    <div class="teaching-item">Operating Systems (<a href="https://cs111.stanford.edu/" target="_blank" rel="noopener noreferrer">CS111</a>)</div>
+                    <div class="teaching-item">Intro Programming (<a href="https://cs106a.stanford.edu/" target="_blank" rel="noopener noreferrer">CS106A</a>)</div>
+                    <div class="teaching-item">Databases (<a href="https://cs145.stanford.edu/" target="_blank" rel="noopener noreferrer">CS145</a>)</div>
+                    <div class="teaching-item"><a href="https://www.youtube.com/@nivedithasiyer" target="_blank" rel="noopener noreferrer">YouTube</a> videos!</div>
                 </div>
             </div>
 
             <div class="content footer-email">
-                <p>📬 nivsiyer@cs.stanford.edu</p>
-                <p class="footer-copyright">© 2026 Niveditha S. Iyer</p>
+                <p><a class="footer-email-link" href="mailto:nivsiyer@cs.stanford.edu"><i data-lucide="mail" class="footer-mail-icon" aria-hidden="true"></i><span>nivsiyer@cs.stanford.edu</span></a></p>
             </div>
         </main>
     </div>
@@ -677,6 +741,7 @@
         lucide.createIcons();
         setupThemeToggle();
     </script>
+    <script src="/assets/scripts/visit-tracker.js" defer></script>
 </body>
 
 </html>
